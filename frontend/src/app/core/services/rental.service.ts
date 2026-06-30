@@ -13,4 +13,7 @@ export class RentalService {
   getRentals(): Observable<Rental[]> {
     return this.http.get<Rental[]>(this.baseUrl);
   }
+  getTodayRentals(): Observable<Rental[]> {
+    return this.http.get<Rental[]>(`${this.baseUrl}/today`);
+  }
 }
