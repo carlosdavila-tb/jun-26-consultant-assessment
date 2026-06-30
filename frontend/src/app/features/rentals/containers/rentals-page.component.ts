@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { RentalService } from '../../../core/services/rental.service';
+import { Rental } from '../../../models/rental.model';
 import { RentalListComponent } from '../components/rental-list.component';
 
 @Component({
@@ -9,8 +11,12 @@ import { RentalListComponent } from '../components/rental-list.component';
   template: `
     <section class="page">
       <h1>Riverbend Auto Rental — Front Desk</h1>
-      <h2>All Rentals</h2>
-      <app-rental-list></app-rental-list>
+
+      <h2>Todays Pickups</h2>
+      <app-rental-list [rentals]="todaysPickups"></app-rental-list>
+
+      <h2>All the Rentals</h2>
+      <app-rental-list [rentals]="rentals"></app-rental-list>
     </section>
   `,
   styles: [`
@@ -18,4 +24,25 @@ import { RentalListComponent } from '../components/rental-list.component';
     h2 { margin-top: 24px; }
   `],
 })
-export class RentalsDashboardComponent {}
+export class RentalsDashboardComponent implements OnInit {
+  rentals: Rental[] = [];
+  todaysPickups: Rental[] = [];
+
+  constructor(private rentalService: RentalService) {}
+
+  ngOnInit(): void {
+    this.rentalService.getRentals().subscribe({
+      next: (rentals) => {
+        this.rentals = rentals;
+        this.todaysPickups = rentals.filter(
+          (rental) => rental.pickupDate === this.today()
+        );
+      },
+      error: (err) => console.error(err),
+    });
+  }
+
+  private today(): string {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
