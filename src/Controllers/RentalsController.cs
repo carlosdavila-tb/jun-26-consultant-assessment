@@ -40,18 +40,6 @@ public class RentalsController : ControllerBase
         {
             Rental rental = _rentalService.BookRental(request);
 
-            VehiclePreparationNote vehiclePreparationNote = new()
-            {
-                Id = 0, // Si la BD genera el Id, puedes dejar 0.
-                VehicleClass = rental.VehicleClass,
-                PreparationDate = DateOnly.FromDateTime(DateTime.Today),
-                ReadyForRent = false,
-                PreparationNote = string.Empty
-            };
-
-            // Aquí podrías guardarlo
-            // _vehiclePreparationNoteService.Create(vehiclePreparationNote);
-
             return CreatedAtAction(nameof(GetRentals), new { id = rental.Id }, rental);
         }
         catch (ArgumentException ex)

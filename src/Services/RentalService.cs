@@ -47,11 +47,10 @@ public class RentalService : IRentalService
         TotalCost = totalCost
     };
 
-    // Crear la nota de preparación del vehículo
     var vehiclePreparationNote = new VehiclePreparationNote
     {
-        Id = 1, // Reemplazar por un contador o el valor correspondiente
-        VehicleId = "VH-001", // Asignar el identificador real del vehículo
+        Id = 1,
+        VehicleId = "VH-001", 
         VehicleClass = rental.VehicleClass,
         PreparationDate = rental.PickupDate,
         ReadyForRent = false,
