@@ -543,7 +543,7 @@ _Explain why you chose your answer..._
 **A pipeline runs build → unit tests → deploy-to-dev. The unit tests fail. What should happen?**
 
 - [ ] A) Deploy anyway and fix the tests later
-- [ ] B) The pipeline stops and does not deploy — a failed test gate blocks promotion
+- [X] B) The pipeline stops and does not deploy — a failed test gate blocks promotion
 - [ ] C) Skip the failing tests so the build goes green
 - [ ] D) Roll back the previous production release
 
@@ -555,7 +555,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) It replaces the need for unit tests
 - [ ] B) It speeds up the build
-- [ ] C) It catches known-vulnerable packages before they reach production, instead of discovering them after release
+- [X] C) It catches known-vulnerable packages before they reach production, instead of discovering them after release
 - [ ] D) It deploys the application to every environment at once
 
 ---
@@ -575,7 +575,7 @@ _Explain why you chose your answer..._
 - [ ] A) On every change-detection cycle
 - [ ] B) Only when the page first loads
 - [ ] C) When the rentals request fails
-- [ ] D) When the `rentals` collection is empty
+- [X] D) When the `rentals` collection is empty
 
 ---
 
@@ -583,7 +583,7 @@ _Explain why you chose your answer..._
 
 **`RentalListComponent` loads its data in `ngOnInit` rather than in the constructor. What does `ngOnInit` give that the constructor does not?**
 
-- [ ] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
+- [X] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
 - [ ] B) It runs before the class is constructed
 - [ ] C) It guarantees the HTTP call is synchronous
 - [ ] D) It prevents the component from ever re-rendering
@@ -595,7 +595,7 @@ _Explain why you chose your answer..._
 **The components are standalone and list `imports: [CommonModule]`. What does the `imports` array do for a standalone component?**
 
 - [ ] A) It registers the component as a global singleton
-- [ ] B) It makes the listed directives and pipes available to the component's template without an NgModule
+- [X] B) It makes the listed directives and pipes available to the component's template without an NgModule
 - [ ] C) It imports the backend API definitions
 - [ ] D) It lazy-loads the component on first render
 
@@ -607,7 +607,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Manually slice the ISO string in the component with substring math
 - [ ] B) Store a second pre-formatted date field on the backend
-- [ ] C) Use the framework's date pipe in the template to format the value for presentation
+- [X] C) Use the framework's date pipe in the template to format the value for presentation
 - [ ] D) Convert the date to a number and show that
 
 ---
@@ -619,7 +619,7 @@ _Explain why you chose your answer..._
 - [ ] A) It converts the observable into a Promise
 - [ ] B) It caches the data on the server
 - [ ] C) It increases the polling frequency of the request
-- [ ] D) It subscribes and unsubscribes automatically and renders emitted values, avoiding a manual subscription leak
+- [X] D) It subscribes and unsubscribes automatically and renders emitted values, avoiding a manual subscription leak
 
 ---
 
@@ -627,7 +627,7 @@ _Explain why you chose your answer..._
 
 **The service is typed `getRentals(): Observable<Rental[]>` using the `Rental` interface. The API will soon add a field. Which approach best preserves type safety across the components that use it?**
 
-- [ ] A) Add the new field to the `Rental` interface so the compiler tracks its use everywhere, rather than switching to `any`
+- [X] A) Add the new field to the `Rental` interface so the compiler tracks its use everywhere, rather than switching to `any`
 - [ ] B) Type the response as `any` so no changes are needed
 - [ ] C) Cast the response to `unknown` and read fields by string
 - [ ] D) Duplicate the `Rental` interface inside each component
@@ -640,7 +640,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Hard-code a "$" in front of the raw number directly in the template
 - [ ] B) Format the amount with the framework's currency pipe in the template — declarative and locale-aware, but the formatting lives in the view
-- [ ] C) Precompute a formatted total string in the component (for example, a `formattedTotal` field) — easier to unit-test and control, but the component now owns a presentation detail
+- [X] C) Precompute a formatted total string in the component (for example, a `formattedTotal` field) — easier to unit-test and control, but the component now owns a presentation detail
 - [ ] D) Store the formatted string on the server and never format on the client
 
 <details open>
@@ -658,7 +658,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) The application's business logic
 - [ ] B) The customers' booking data
-- [ ] C) The operating system, runtime, patching, and scaling — the team deploys the app rather than maintaining the server
+- [X] C) The operating system, runtime, patching, and scaling — the team deploys the app rather than maintaining the server
 - [ ] D) The HTTP status codes the API returns
 
 ---
@@ -670,7 +670,7 @@ _Explain why you chose your answer..._
 - [ ] A) The programming language the API must use
 - [ ] B) The number of endpoints the API can expose
 - [ ] C) The version of .NET available
-- [ ] D) Network latency for users (and where the data physically resides)
+- [X] D) Network latency for users (and where the data physically resides)
 
 ---
 
@@ -678,7 +678,7 @@ _Explain why you chose your answer..._
 
 **The Angular app calls the backend. Which statement is true about serving that traffic over HTTPS/TLS rather than plain HTTP?**
 
-- [ ] A) TLS encrypts the data in transit, so the request contents aren't readable by someone observing the network
+- [X] A) TLS encrypts the data in transit, so the request contents aren't readable by someone observing the network
 - [ ] B) TLS makes the responses render faster in the browser
 - [ ] C) TLS removes the need for any CORS configuration
 - [ ] D) TLS stores the data encrypted in the database
@@ -690,7 +690,7 @@ _Explain why you chose your answer..._
 **Which structure best describes a unit test for `BookRental`'s calculation?**
 
 - [ ] A) Assert first, then arrange, then act
-- [ ] B) Arrange (build a `CreateRentalRequest`), act (call `BookRental`), assert (check the returned rental's days and total)
+- [X] B) Arrange (build a `CreateRentalRequest`), act (call `BookRental`), assert (check the returned rental's days and total)
 - [ ] C) Call the endpoint over HTTP, then read the database, then print the result
 - [ ] D) One line that constructs, calls, and asserts together for brevity
 
@@ -702,7 +702,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) That `BookRental` calls its internal list exactly once
 - [ ] B) That the method runs in under a millisecond
-- [ ] C) The observable behavior — the output produced for given inputs, regardless of how it is computed
+- [X] C) The observable behavior — the output produced for given inputs, regardless of how it is computed
 - [ ] D) That the controller returns a 201 status
 
 ---
@@ -714,7 +714,7 @@ _Explain why you chose your answer..._
 - [ ] A) The tests are deleted and rewritten from scratch
 - [ ] B) New behavior is added in the same step
 - [ ] C) The production code is left unchanged
-- [ ] D) Behavior stays the same and the existing tests still pass while the code's structure is improved
+- [X] D) Behavior stays the same and the existing tests still pass while the code's structure is improved
 
 ---
 
@@ -722,7 +722,7 @@ _Explain why you chose your answer..._
 
 **Which set of cases best covers `BookRental`'s input validation?**
 
-- [ ] A) Empty customer name, empty vehicle class, return date not after pickup, non-positive rate, plus one fully valid booking — covering the empty, exception, boundary, and simple cases
+- [X] A) Empty customer name, empty vehicle class, return date not after pickup, non-positive rate, plus one fully valid booking — covering the empty, exception, boundary, and simple cases
 - [ ] B) Only one valid booking with typical values
 - [ ] C) Many random valid bookings and nothing else
 - [ ] D) Only the case where the rate is exactly zero
@@ -734,7 +734,7 @@ _Explain why you chose your answer..._
 **Every test rebuilds the same `CreateRentalRequest` before calling `BookRental`. What does extracting a shared builder or helper for it achieve?**
 
 - [ ] A) It makes the tests depend on each other's order
-- [ ] B) It removes the duplication, so a change to the request shape updates one place and each test stays focused on its scenario
+- [X] B) It removes the duplication, so a change to the request shape updates one place and each test stays focused on its scenario
 - [ ] C) It turns the tests into integration tests
 - [ ] D) It guarantees 100% code coverage
 
@@ -746,7 +746,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Copy the same test method once per combination
 - [ ] B) Assert only the first combination and assume the rest
-- [ ] C) Use a parameterized test (`[Theory]` with `[InlineData]` rows) feeding each combination into one test
+- [X] C) Use a parameterized test (`[Theory]` with `[InlineData]` rows) feeding each combination into one test
 - [ ] D) Test the combinations only through the live HTTP endpoint
 
 ---
@@ -757,7 +757,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Test only by manually clicking through the page before each release
 - [ ] B) Write no tests below the UI, since the end-to-end tests cover everything
-- [ ] C) Invest mainly in end-to-end tests that drive the page against the live API — highest whole-stack confidence, at the cost of slow, brittle, hard-to-pinpoint feedback
+- [X] C) Invest mainly in end-to-end tests that drive the page against the live API — highest whole-stack confidence, at the cost of slow, brittle, hard-to-pinpoint feedback
 - [ ] D) Invest mainly in fast unit/integration tests below the UI with a few end-to-end checks — fast, precise feedback, at the cost of possibly missing some integration gaps
 
 <details open>
