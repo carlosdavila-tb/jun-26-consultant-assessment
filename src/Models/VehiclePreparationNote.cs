@@ -3,10 +3,11 @@ namespace RentalDesk.Models;
 public class VehiclePreparationNote
 {
     public required int Id { get; init; }
-    public required string VehicleId { get; init; }
+    public string VehicleId { get; init; }
     public required string VehicleClass { get; init; }
     public required DateOnly PreparationDate { get; init; }
     public required bool ReadyForRent { get; init; }
+    public bool PreparationMade { get; init; }
     public required string PreparationNote { get; init; }
 }
 
