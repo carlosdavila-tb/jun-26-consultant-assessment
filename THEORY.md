@@ -543,7 +543,7 @@ _Explain why you chose your answer..._
 **A pipeline runs build → unit tests → deploy-to-dev. The unit tests fail. What should happen?**
 
 - [ ] A) Deploy anyway and fix the tests later
-- [ ] B) The pipeline stops and does not deploy — a failed test gate blocks promotion
+- [X] B) The pipeline stops and does not deploy — a failed test gate blocks promotion
 - [ ] C) Skip the failing tests so the build goes green
 - [ ] D) Roll back the previous production release
 
@@ -555,7 +555,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) It replaces the need for unit tests
 - [ ] B) It speeds up the build
-- [ ] C) It catches known-vulnerable packages before they reach production, instead of discovering them after release
+- [X] C) It catches known-vulnerable packages before they reach production, instead of discovering them after release
 - [ ] D) It deploys the application to every environment at once
 
 ---
@@ -575,7 +575,7 @@ _Explain why you chose your answer..._
 - [ ] A) On every change-detection cycle
 - [ ] B) Only when the page first loads
 - [ ] C) When the rentals request fails
-- [ ] D) When the `rentals` collection is empty
+- [X] D) When the `rentals` collection is empty
 
 ---
 
@@ -583,7 +583,7 @@ _Explain why you chose your answer..._
 
 **`RentalListComponent` loads its data in `ngOnInit` rather than in the constructor. What does `ngOnInit` give that the constructor does not?**
 
-- [ ] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
+- [X] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
 - [ ] B) It runs before the class is constructed
 - [ ] C) It guarantees the HTTP call is synchronous
 - [ ] D) It prevents the component from ever re-rendering
@@ -595,7 +595,7 @@ _Explain why you chose your answer..._
 **The components are standalone and list `imports: [CommonModule]`. What does the `imports` array do for a standalone component?**
 
 - [ ] A) It registers the component as a global singleton
-- [ ] B) It makes the listed directives and pipes available to the component's template without an NgModule
+- [X] B) It makes the listed directives and pipes available to the component's template without an NgModule
 - [ ] C) It imports the backend API definitions
 - [ ] D) It lazy-loads the component on first render
 
@@ -607,7 +607,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Manually slice the ISO string in the component with substring math
 - [ ] B) Store a second pre-formatted date field on the backend
-- [ ] C) Use the framework's date pipe in the template to format the value for presentation
+- [X] C) Use the framework's date pipe in the template to format the value for presentation
 - [ ] D) Convert the date to a number and show that
 
 ---
