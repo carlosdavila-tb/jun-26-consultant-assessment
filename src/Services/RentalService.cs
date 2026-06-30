@@ -10,6 +10,7 @@ public class RentalService : IRentalService
 
     public IReadOnlyList<Rental> GetRentals() => _rentals;
 
+    public IReadOnlyList<Rental> GetRentalsToday() => _rentals;
     public IReadOnlyList<string> GetConfirmations() => _confirmations;
 
     public Rental BookRental(CreateRentalRequest request)

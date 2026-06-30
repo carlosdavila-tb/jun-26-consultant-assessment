@@ -21,6 +21,12 @@ public class RentalsController : ControllerBase
         return Ok(_rentalService.GetRentals());
     }
 
+    [HttpGet]
+    public ActionResult<IReadOnlyList<Rental>> GetRentalsToday()
+    {
+        return Ok(_rentalService.GetRentalsToday());
+    }
+
     [HttpGet("confirmations")]
     public ActionResult<IReadOnlyList<string>> GetConfirmations()
     {
