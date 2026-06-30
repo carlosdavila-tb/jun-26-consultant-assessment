@@ -7,12 +7,9 @@ public class RentalService : IRentalService
     private readonly List<Rental> _rentals = new();
     private readonly List<string> _confirmations = new();
     private int _nextId = 1;
-
     public IReadOnlyList<Rental> GetRentals() => _rentals;
-
     public IReadOnlyList<Rental> GetRentalsToday() => _rentals;
     public IReadOnlyList<string> GetConfirmations() => _confirmations;
-
     public Rental BookRental(CreateRentalRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.CustomerName))
