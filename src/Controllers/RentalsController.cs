@@ -21,6 +21,12 @@ public class RentalsController : ControllerBase
         return Ok(_rentalService.GetRentals());
     }
 
+    [HttpGet]
+    public ActionResult<IReadOnlyList<Rental>> GetRentalsToday()
+    {
+        return Ok(_rentalService.GetRentalsToday());
+    }
+
     [HttpGet("confirmations")]
     public ActionResult<IReadOnlyList<string>> GetConfirmations()
     {
@@ -33,6 +39,7 @@ public class RentalsController : ControllerBase
         try
         {
             Rental rental = _rentalService.BookRental(request);
+
             return CreatedAtAction(nameof(GetRentals), new { id = rental.Id }, rental);
         }
         catch (ArgumentException ex)
