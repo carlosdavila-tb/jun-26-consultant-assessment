@@ -317,7 +317,7 @@ _Explain why you chose your answer..._
 - [ ] A) Inline the database calls directly inside `BookRental`
 - [ ] B) Move the booking logic into the controller so the service can be deleted
 - [ ] C) Have the controller talk to the database and bypass the service
-- [ ] D) Have the service depend on a storage interface, with the in-memory and database versions as interchangeable implementations
+- [X] D) Have the service depend on a storage interface, with the in-memory and database versions as interchangeable implementations
 
 ---
 
@@ -325,13 +325,13 @@ _Explain why you chose your answer..._
 
 **Riverbend wants bookings to survive an application restart (they are in-memory today). Which persistence approach would you choose, and why?**
 
-- [ ] A) Put the store behind a data-access interface backed by a managed relational database — durable and queryable, at the cost of an external dependency and its connection/operational concerns
+- [X] A) Put the store behind a data-access interface backed by a managed relational database — durable and queryable, at the cost of an external dependency and its connection/operational concerns
 - [ ] B) Keep an in-process store but periodically write a snapshot to a local file that the app reloads on start — fewer moving parts, but weaker concurrency and query support
 - [ ] C) Leave it in memory and ask staff to re-enter bookings after a restart
 - [ ] D) Write every booking to a plain log line printed to the console
 
 <details open>
-<summary>💬 Your reasoning</summary>
+<summary>MOVING THE DATA TO A RELATIONAL DATABASE WOULD KEEP THE VALUES SAVED EVEN IF THE APPLICATION RESTARTS</summary>
 
 _Explain why you chose your answer..._
 
@@ -344,7 +344,7 @@ _Explain why you chose your answer..._
 **`RentalsController` is annotated `[ApiController]`, `[Route("rentals")]`, with `[HttpGet]`, `[HttpGet("confirmations")]`, and `[HttpPost]`. What do these attributes do?**
 
 - [ ] A) They register the service in the DI container
-- [ ] B) They map HTTP verbs and paths to action methods, so `GET /rentals` reaches `GetRentals` and `GET /rentals/confirmations` reaches `GetConfirmations`
+- [X] B) They map HTTP verbs and paths to action methods, so `GET /rentals` reaches `GetRentals` and `GET /rentals/confirmations` reaches `GetConfirmations`
 - [ ] C) They validate the request body before the action runs
 - [ ] D) They cache the responses for all GET endpoints
 
@@ -356,7 +356,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) It reads the value from the URL query string
 - [ ] B) It validates that the rate is positive
-- [ ] C) It binds (deserializes) the JSON request body into the `CreateRentalRequest` object
+- [X] C) It binds (deserializes) the JSON request body into the `CreateRentalRequest` object
 - [ ] D) It sets the HTTP response status code
 
 ---
@@ -370,7 +370,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 ```
 
 - [ ] A) A new `RentalService` is created for every HTTP request
-- [ ] B) A new `RentalService` is created at every injection point
+- [X] B) A new `RentalService` is created at every injection point
 - [ ] C) The service is created only when first booked and discarded after each request
 - [ ] D) One instance lives for the application's lifetime and is shared across all requests, which is why the in-memory rentals persist between calls
 
@@ -380,7 +380,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 
 **When `BookRental` throws `ArgumentException` for invalid input, the controller catches it and returns `BadRequest`. A teammate suggests letting it bubble up as a 500 instead. Which best handles a predictable invalid-input case?**
 
-- [ ] A) Translate the invalid input to a 400 (BadRequest) at the controller so clients get a clear client-error response
+- [X] A) Translate the invalid input to a 400 (BadRequest) at the controller so clients get a clear client-error response
 - [ ] B) Let it become a 500 so the client knows something went wrong
 - [ ] C) Swallow the exception and return 200 with an empty body
 - [ ] D) Retry the booking automatically until it succeeds
@@ -392,7 +392,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 **The service methods are synchronous, which is fine for an in-memory list. Which statement is true about introducing `async`/`await` once a real database is added?**
 
 - [ ] A) `async` speeds up pure in-memory work as well, so it should be added now
-- [ ] B) `async`/`await` frees the request thread during I/O waits, improving throughput under load; for pure in-memory work it adds no benefit
+- [X] B) `async`/`await` frees the request thread during I/O waits, improving throughput under load; for pure in-memory work it adds no benefit
 - [ ] C) `async` is required for any method that returns a value
 - [ ] D) `async` changes the HTTP status codes the action returns
 
@@ -404,7 +404,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 
 - [ ] A) Instantiate the database client with `new` inside `BookRental`
 - [ ] B) Move all booking logic into `Program.cs`
-- [ ] C) Register a persistent implementation behind `IRentalService` (or its storage interface) via DI, swapping the in-memory one without changing the controller
+- [X] C) Register a persistent implementation behind `IRentalService` (or its storage interface) via DI, swapping the in-memory one without changing the controller
 - [ ] D) Have the controller open its own database connection per request
 
 ---
@@ -421,7 +421,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 - [ ] A) Register it transient so a new instance is created at every injection point
 - [ ] B) Register it however the template defaults, without considering lifetime
 - [ ] C) Keep it singleton — one shared instance keeps the in-memory bookings across requests, but the shared mutable state must be made safe under concurrency
-- [ ] D) Switch to scoped — each request gets a fresh instance with simpler isolation, but in-memory bookings won't persist between requests unless storage moves elsewhere
+- [X] D) Switch to scoped — each request gets a fresh instance with simpler isolation, but in-memory bookings won't persist between requests unless storage moves elsewhere
 
 <details open>
 <summary>💬 Your reasoning</summary>
@@ -432,11 +432,11 @@ _Explain why you chose your answer..._
 
 ---
 
-### Question 33 — Agentic AI
+### Question 33 — Agentic AI TODO
 
 **Riverbend pilots a front-desk assistant that drafts customer confirmation messages, which should read consistently. What does lowering the model's temperature do?**
 
-- [ ] A) It reduces randomness in the output, producing more consistent, repeatable wording
+- [X] A) It reduces randomness in the output, producing more consistent, repeatable wording
 - [ ] B) It increases the size of the context window
 - [ ] C) It makes the model respond faster
 - [ ] D) It guarantees the output is factually correct
@@ -448,7 +448,7 @@ _Explain why you chose your answer..._
 **The assistant is given a long list of current rentals plus the conversation so far. What does the model's context window limit?**
 
 - [ ] A) The number of customers the branch can have
-- [ ] B) The total tokens (prompt plus response) the model can consider at once, so oversized inputs must be trimmed or summarized
+- [X] B) The total tokens (prompt plus response) the model can consider at once, so oversized inputs must be trimmed or summarized
 - [ ] C) How many times per day the assistant can be called
 - [ ] D) The maximum value the temperature setting can take
 
@@ -460,7 +460,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) The data the model was trained on
 - [ ] B) The hardware the model runs on
-- [ ] C) The tone, scope, and format of the assistant's responses
+- [X] C) The tone, scope, and format of the assistant's responses
 - [ ] D) The network latency of each call
 
 ---
@@ -472,7 +472,7 @@ _Explain why you chose your answer..._
 - [ ] A) Lowering the temperature to zero
 - [ ] B) Few-shot labeling
 - [ ] C) Shrinking the context window
-- [ ] D) Chain-of-thought prompting — guiding step-by-step reasoning to improve accuracy on multi-step tasks
+- [X] D) Chain-of-thought prompting — guiding step-by-step reasoning to improve accuracy on multi-step tasks
 
 ---
 
@@ -480,7 +480,7 @@ _Explain why you chose your answer..._
 
 **The assistant sometimes states a daily rate that isn't in Riverbend's data. Which approach best reduces this?**
 
-- [ ] A) Provide the actual rate data as grounded context and instruct the assistant to answer only from it, not from memory
+- [X] A) Provide the actual rate data as grounded context and instruct the assistant to answer only from it, not from memory
 - [ ] B) Raise the temperature so the answers sound more confident
 - [ ] C) Add more unrelated examples to the prompt
 - [ ] D) Ask the same question repeatedly until the answers agree
@@ -492,7 +492,7 @@ _Explain why you chose your answer..._
 **The assistant keeps the entire conversation and the full rentals list in context on every turn. Which statement about this unbounded context growth is true?**
 
 - [ ] A) It has no downside because larger context is always better
-- [ ] B) Tokens and cost grow, and irrelevant content can crowd out what matters, so the context needs deliberate pruning or summarizing
+- [X] B) Tokens and cost grow, and irrelevant content can crowd out what matters, so the context needs deliberate pruning or summarizing
 - [ ] C) It permanently increases the model's maximum context window
 - [ ] D) It guarantees the assistant never repeats itself
 
@@ -504,7 +504,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Keep only the latest prompt text in a code comment
 - [ ] B) Avoid changing the prompt once it works
-- [ ] C) Keep prompts under version control so changes are tracked and earlier versions can be restored
+- [X] C) Keep prompts under version control so changes are tracked and earlier versions can be restored
 - [ ] D) Raise the temperature to mask the regression
 
 ---
@@ -531,7 +531,7 @@ _Explain why you chose your answer..._
 
 **The rental-desk change is delivered on a feature branch via a pull request rather than pushed straight to `main`. What does the PR-based flow provide?**
 
-- [ ] A) Review and automated checks run before the change merges, keeping `main` releasable
+- [X] A) Review and automated checks run before the change merges, keeping `main` releasable
 - [ ] B) It makes the build skip the test stage
 - [ ] C) It deploys directly to production on push
 - [ ] D) It removes the need for version control
@@ -543,7 +543,7 @@ _Explain why you chose your answer..._
 **A pipeline runs build → unit tests → deploy-to-dev. The unit tests fail. What should happen?**
 
 - [ ] A) Deploy anyway and fix the tests later
-- [ ] B) The pipeline stops and does not deploy — a failed test gate blocks promotion
+- [X] B) The pipeline stops and does not deploy — a failed test gate blocks promotion
 - [ ] C) Skip the failing tests so the build goes green
 - [ ] D) Roll back the previous production release
 
@@ -555,7 +555,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) It replaces the need for unit tests
 - [ ] B) It speeds up the build
-- [ ] C) It catches known-vulnerable packages before they reach production, instead of discovering them after release
+- [X] C) It catches known-vulnerable packages before they reach production, instead of discovering them after release
 - [ ] D) It deploys the application to every environment at once
 
 ---
@@ -575,7 +575,7 @@ _Explain why you chose your answer..._
 - [ ] A) On every change-detection cycle
 - [ ] B) Only when the page first loads
 - [ ] C) When the rentals request fails
-- [ ] D) When the `rentals` collection is empty
+- [X] D) When the `rentals` collection is empty
 
 ---
 
@@ -583,7 +583,7 @@ _Explain why you chose your answer..._
 
 **`RentalListComponent` loads its data in `ngOnInit` rather than in the constructor. What does `ngOnInit` give that the constructor does not?**
 
-- [ ] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
+- [X] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
 - [ ] B) It runs before the class is constructed
 - [ ] C) It guarantees the HTTP call is synchronous
 - [ ] D) It prevents the component from ever re-rendering
@@ -595,7 +595,7 @@ _Explain why you chose your answer..._
 **The components are standalone and list `imports: [CommonModule]`. What does the `imports` array do for a standalone component?**
 
 - [ ] A) It registers the component as a global singleton
-- [ ] B) It makes the listed directives and pipes available to the component's template without an NgModule
+- [X] B) It makes the listed directives and pipes available to the component's template without an NgModule
 - [ ] C) It imports the backend API definitions
 - [ ] D) It lazy-loads the component on first render
 
@@ -607,7 +607,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Manually slice the ISO string in the component with substring math
 - [ ] B) Store a second pre-formatted date field on the backend
-- [ ] C) Use the framework's date pipe in the template to format the value for presentation
+- [X] C) Use the framework's date pipe in the template to format the value for presentation
 - [ ] D) Convert the date to a number and show that
 
 ---
@@ -619,7 +619,7 @@ _Explain why you chose your answer..._
 - [ ] A) It converts the observable into a Promise
 - [ ] B) It caches the data on the server
 - [ ] C) It increases the polling frequency of the request
-- [ ] D) It subscribes and unsubscribes automatically and renders emitted values, avoiding a manual subscription leak
+- [X] D) It subscribes and unsubscribes automatically and renders emitted values, avoiding a manual subscription leak
 
 ---
 
@@ -627,7 +627,7 @@ _Explain why you chose your answer..._
 
 **The service is typed `getRentals(): Observable<Rental[]>` using the `Rental` interface. The API will soon add a field. Which approach best preserves type safety across the components that use it?**
 
-- [ ] A) Add the new field to the `Rental` interface so the compiler tracks its use everywhere, rather than switching to `any`
+- [X] A) Add the new field to the `Rental` interface so the compiler tracks its use everywhere, rather than switching to `any`
 - [ ] B) Type the response as `any` so no changes are needed
 - [ ] C) Cast the response to `unknown` and read fields by string
 - [ ] D) Duplicate the `Rental` interface inside each component
@@ -639,12 +639,12 @@ _Explain why you chose your answer..._
 **The per-row total needs to be shown as currency. How would you produce the formatted value, and why?**
 
 - [ ] A) Hard-code a "$" in front of the raw number directly in the template
-- [ ] B) Format the amount with the framework's currency pipe in the template — declarative and locale-aware, but the formatting lives in the view
+- [X] B) Format the amount with the framework's currency pipe in the template — declarative and locale-aware, but the formatting lives in the view
 - [ ] C) Precompute a formatted total string in the component (for example, a `formattedTotal` field) — easier to unit-test and control, but the component now owns a presentation detail
 - [ ] D) Store the formatted string on the server and never format on the client
 
 <details open>
-<summary>💬 Your reasoning</summary>
+<summary>WE CAN EASILY USE A PIPE | TO RENDER A DIFFERENT FORMAT FOR THE CURRENCY AND IS NATIVELY BUILT IN ANGULAR</summary>
 
 _Explain why you chose your answer..._
 
@@ -652,13 +652,13 @@ _Explain why you chose your answer..._
 
 ---
 
-### Question 51 — Infrastructure
+### Question 51 — Infrastructure IDK
 
 **The team weighs hosting the .NET API on a managed application platform (PaaS) versus a bare virtual machine (IaaS). What does the PaaS option manage that the IaaS option leaves to the team?**
 
 - [ ] A) The application's business logic
 - [ ] B) The customers' booking data
-- [ ] C) The operating system, runtime, patching, and scaling — the team deploys the app rather than maintaining the server
+- [X] C) The operating system, runtime, patching, and scaling — the team deploys the app rather than maintaining the server
 - [ ] D) The HTTP status codes the API returns
 
 ---
@@ -670,7 +670,7 @@ _Explain why you chose your answer..._
 - [ ] A) The programming language the API must use
 - [ ] B) The number of endpoints the API can expose
 - [ ] C) The version of .NET available
-- [ ] D) Network latency for users (and where the data physically resides)
+- [X] D) Network latency for users (and where the data physically resides)
 
 ---
 
@@ -678,7 +678,7 @@ _Explain why you chose your answer..._
 
 **The Angular app calls the backend. Which statement is true about serving that traffic over HTTPS/TLS rather than plain HTTP?**
 
-- [ ] A) TLS encrypts the data in transit, so the request contents aren't readable by someone observing the network
+- [X] A) TLS encrypts the data in transit, so the request contents aren't readable by someone observing the network
 - [ ] B) TLS makes the responses render faster in the browser
 - [ ] C) TLS removes the need for any CORS configuration
 - [ ] D) TLS stores the data encrypted in the database
@@ -690,7 +690,7 @@ _Explain why you chose your answer..._
 **Which structure best describes a unit test for `BookRental`'s calculation?**
 
 - [ ] A) Assert first, then arrange, then act
-- [ ] B) Arrange (build a `CreateRentalRequest`), act (call `BookRental`), assert (check the returned rental's days and total)
+- [X] B) Arrange (build a `CreateRentalRequest`), act (call `BookRental`), assert (check the returned rental's days and total)
 - [ ] C) Call the endpoint over HTTP, then read the database, then print the result
 - [ ] D) One line that constructs, calls, and asserts together for brevity
 
@@ -702,7 +702,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) That `BookRental` calls its internal list exactly once
 - [ ] B) That the method runs in under a millisecond
-- [ ] C) The observable behavior — the output produced for given inputs, regardless of how it is computed
+- [X] C) The observable behavior — the output produced for given inputs, regardless of how it is computed
 - [ ] D) That the controller returns a 201 status
 
 ---
@@ -714,7 +714,7 @@ _Explain why you chose your answer..._
 - [ ] A) The tests are deleted and rewritten from scratch
 - [ ] B) New behavior is added in the same step
 - [ ] C) The production code is left unchanged
-- [ ] D) Behavior stays the same and the existing tests still pass while the code's structure is improved
+- [X] D) Behavior stays the same and the existing tests still pass while the code's structure is improved
 
 ---
 
@@ -722,7 +722,7 @@ _Explain why you chose your answer..._
 
 **Which set of cases best covers `BookRental`'s input validation?**
 
-- [ ] A) Empty customer name, empty vehicle class, return date not after pickup, non-positive rate, plus one fully valid booking — covering the empty, exception, boundary, and simple cases
+- [X] A) Empty customer name, empty vehicle class, return date not after pickup, non-positive rate, plus one fully valid booking — covering the empty, exception, boundary, and simple cases
 - [ ] B) Only one valid booking with typical values
 - [ ] C) Many random valid bookings and nothing else
 - [ ] D) Only the case where the rate is exactly zero
@@ -746,7 +746,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Copy the same test method once per combination
 - [ ] B) Assert only the first combination and assume the rest
-- [ ] C) Use a parameterized test (`[Theory]` with `[InlineData]` rows) feeding each combination into one test
+- [X] C) Use a parameterized test (`[Theory]` with `[InlineData]` rows) feeding each combination into one test
 - [ ] D) Test the combinations only through the live HTTP endpoint
 
 ---
@@ -758,7 +758,7 @@ _Explain why you chose your answer..._
 - [ ] A) Test only by manually clicking through the page before each release
 - [ ] B) Write no tests below the UI, since the end-to-end tests cover everything
 - [ ] C) Invest mainly in end-to-end tests that drive the page against the live API — highest whole-stack confidence, at the cost of slow, brittle, hard-to-pinpoint feedback
-- [ ] D) Invest mainly in fast unit/integration tests below the UI with a few end-to-end checks — fast, precise feedback, at the cost of possibly missing some integration gaps
+- [X] D) Invest mainly in fast unit/integration tests below the UI with a few end-to-end checks — fast, precise feedback, at the cost of possibly missing some integration gaps
 
 <details open>
 <summary>💬 Your reasoning</summary>
