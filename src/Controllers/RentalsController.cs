@@ -40,4 +40,10 @@ public class RentalsController : ControllerBase
             return BadRequest(new { error = ex.Message });
         }
     }
+    
+    [HttpGet("preparation-notes")]
+    public ActionResult<IReadOnlyList<string>> GetPreparationNotes()
+    {
+        return Ok(_rentalService.GetPreparationNotes());
+    }
 }
