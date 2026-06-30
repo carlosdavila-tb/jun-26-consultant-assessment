@@ -13,7 +13,7 @@ public required DateOnly PickupDate { get; init; }
 public required DateOnly ReturnDate { get; init; }
 ```
 
-- [ ] A) It models a calendar date with no time-of-day, so a booking date never carries a spurious hour/minute component
+- [X] A) It models a calendar date with no time-of-day, so a booking date never carries a spurious hour/minute component
 - [ ] B) It makes date comparisons run measurably faster than `DateTime` at runtime
 - [ ] C) It automatically converts the date to the server's local time zone on read
 - [ ] D) It is required because ASP.NET cannot serialize `DateTime` to JSON
@@ -30,7 +30,7 @@ public required decimal TotalCost { get; init; }
 ```
 
 - [ ] A) The properties can be reassigned at any time after the object is created
-- [ ] B) The properties can be set only while the object is being constructed, so a stored rental's fields can't be altered afterward
+- [X] B) The properties can be set only while the object is being constructed, so a stored rental's fields can't be altered afterward
 - [ ] C) The properties are ignored during JSON serialization
 - [ ] D) The properties must all be value types
 
@@ -45,7 +45,7 @@ string summary = $"EMAIL -> {rental.CustomerName}: Your {rental.VehicleClass} is
 ```
 
 - [ ] A) Interpolation changes the value of `rental.CustomerName`
-- [ ] B) Interpolation only works inside controller actions
+- [X] B) Interpolation only works inside controller actions
 - [ ] C) The `$"..."` form embeds the values inline, which reads more clearly than joining fragments with `+`
 - [ ] D) Interpolation rounds any numeric value to two decimals automatically
 
@@ -66,7 +66,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 - [ ] A) It makes the method run on a background thread
 - [ ] B) It guarantees the method never throws
 - [ ] C) It removes the need to test the invalid cases
-- [ ] D) It rejects bad input up front, so the successful path reads top-to-bottom without deep nesting
+- [X] D) It rejects bad input up front, so the successful path reads top-to-bottom without deep nesting
 
 ---
 
@@ -75,7 +75,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 **The service's private fields are named `_rentals` and `_confirmations`. Which statement about this naming is true in this codebase?**
 
 - [ ] A) The leading underscore + camelCase marks them as private fields, matching the convention used across the project
-- [ ] B) The leading underscore makes the fields publicly accessible
+- [X] B) The leading underscore makes the fields publicly accessible
 - [ ] C) The underscore is required for the garbage collector to track them
 - [ ] D) The names should be PascalCase like `Rentals` to follow the convention
 
@@ -86,7 +86,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 **Validation uses `string.IsNullOrWhiteSpace(request.CustomerName)` rather than `request.CustomerName == null`. What does this guard against that a plain null check would not?**
 
 - [ ] A) Nothing — the two checks are equivalent
-- [ ] B) It also rejects empty or whitespace-only names, not just a missing (null) value
+- [x] B) It also rejects empty or whitespace-only names, not just a missing (null) value
 - [ ] C) It converts the name to upper case before storing
 - [ ] D) It prevents the name from ever being null at compile time
 
@@ -98,7 +98,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 
 - [ ] A) `Handle` is better because shorter names compile faster
 - [ ] B) Both are equally clear since the class name already mentions "Rental"
-- [ ] C) `BookRental` states the action the method performs, so a caller understands it without opening the body
+- [X] C) `BookRental` states the action the method performs, so a caller understands it without opening the body
 - [ ] D) Method names should be nouns, so `Rental` would be the best choice
 
 ---
@@ -113,7 +113,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 ```
 
 - [ ] A) Leave it as-is — seed code never needs to be clean
-- [ ] B) Add a comment above each block explaining the fields
+- [X] B) Add a comment above each block explaining the fields
 - [ ] C) Copy the block a fourth time so all the seeds look symmetric
 - [ ] D) Extract a small helper that builds a request from the varying values and call it for each seed
 
@@ -124,7 +124,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 **The total currently appears only inside the pre-formatted confirmation text (`{rental.TotalCost:C}`). The branch now serves multiple currencies and wants the raw amount available to other parts of the system. Which approach best supports that?**
 
 - [ ] A) Keep the numeric total available as data on the rental and format it for presentation at the edge, rather than only embedding it in a formatted message
-- [ ] B) Store the total only as the formatted string and re-parse the number when it is needed
+- [X] B) Store the total only as the formatted string and re-parse the number when it is needed
 - [ ] C) Round the total to two decimals before storing so the string is always correct
 - [ ] D) Remove the total from the confirmation entirely so there is one less place to maintain
 
@@ -135,7 +135,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 **`GetRentals` returns `IReadOnlyList<Rental>` rather than `List<Rental>`. What does the read-only return type communicate to a caller?**
 
 - [ ] A) The returned collection is a fresh copy on every call
-- [ ] B) The caller is meant to read the collection, not mutate it; the service owns the underlying list
+- [X] B) The caller is meant to read the collection, not mutate it; the service owns the underlying list
 - [ ] C) The collection can hold at most a fixed number of items
 - [ ] D) The caller must release the collection back to the service after use
 
