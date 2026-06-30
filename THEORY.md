@@ -164,7 +164,7 @@ decimal totalCost = days * request.DailyRate;
 - [ ] A) It must be moved into the controller to be testable
 - [ ] B) It can only be verified through an end-to-end test
 - [ ] C) Its result changes depending on how many times it is called
-- [ ] D) Because it depends only on its inputs, the same inputs always produce the same result, making it easy to test in isolation
+- [X] D) Because it depends only on its inputs, the same inputs always produce the same result, making it easy to test in isolation
 
 ---
 
@@ -211,12 +211,12 @@ if (request.DailyRate <= 0) throw new ArgumentException("Daily rate must be grea
 - [ ] A) Remove the validation checks and let invalid data fail later when it is used
 - [ ] B) Log a warning and continue booking with the invalid values
 - [ ] C) Keep throwing for invalid input — the success path stays clean and the failure can't be silently ignored
-- [ ] D) Return a result/outcome object the caller must inspect — an expected invalid booking becomes a normal return value rather than control flow via an exception
+- [X] D) Return a result/outcome object the caller must inspect — an expected invalid booking becomes a normal return value rather than control flow via an exception
 
 <details open>
 <summary>💬 Your reasoning</summary>
 
-_Explain why you chose your answer..._
+Since it is an error that can be shown on the front, we can keep on sending this kind of errors just as messages.
 
 </details>
 
@@ -293,7 +293,7 @@ _Explain why you chose your answer..._
 **Suppose Riverbend opens a second branch and the two share one bookings store across regions. During a network partition between regions, what does the CAP theorem say the system must trade off?**
 
 - [ ] A) It can keep full consistency, availability, and partition tolerance all at once
-- [ ] B) Under a partition it must choose between staying consistent (rejecting some requests) and staying available (risking divergent data)
+- [X] B) Under a partition it must choose between staying consistent (rejecting some requests) and staying available (risking divergent data)
 - [ ] C) Partitions only affect read performance, never correctness
 - [ ] D) Adding more regions removes the trade-off entirely
 
@@ -305,7 +305,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Nothing — swapping the framework always rewrites the domain logic
 - [ ] B) The database schema is migrated automatically
-- [ ] C) The business rules and entity don't change, because they don't depend on the transport layer
+- [X] C) The business rules and entity don't change, because they don't depend on the transport layer
 - [ ] D) The JSON wire format is guaranteed to stay identical
 
 ---
@@ -325,7 +325,7 @@ _Explain why you chose your answer..._
 
 **Riverbend wants bookings to survive an application restart (they are in-memory today). Which persistence approach would you choose, and why?**
 
-- [ ] A) Put the store behind a data-access interface backed by a managed relational database — durable and queryable, at the cost of an external dependency and its connection/operational concerns
+- [X] A) Put the store behind a data-access interface backed by a managed relational database — durable and queryable, at the cost of an external dependency and its connection/operational concerns
 - [ ] B) Keep an in-process store but periodically write a snapshot to a local file that the app reloads on start — fewer moving parts, but weaker concurrency and query support
 - [ ] C) Leave it in memory and ask staff to re-enter bookings after a restart
 - [ ] D) Write every booking to a plain log line printed to the console
@@ -333,7 +333,7 @@ _Explain why you chose your answer..._
 <details open>
 <summary>💬 Your reasoning</summary>
 
-_Explain why you chose your answer..._
+We can keep data ready on a separate db and have data ready for new app start.
 
 </details>
 
@@ -421,7 +421,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 - [ ] A) Register it transient so a new instance is created at every injection point
 - [ ] B) Register it however the template defaults, without considering lifetime
 - [ ] C) Keep it singleton — one shared instance keeps the in-memory bookings across requests, but the shared mutable state must be made safe under concurrency
-- [ ] D) Switch to scoped — each request gets a fresh instance with simpler isolation, but in-memory bookings won't persist between requests unless storage moves elsewhere
+- [X] D) Switch to scoped — each request gets a fresh instance with simpler isolation, but in-memory bookings won't persist between requests unless storage moves elsewhere
 
 <details open>
 <summary>💬 Your reasoning</summary>
