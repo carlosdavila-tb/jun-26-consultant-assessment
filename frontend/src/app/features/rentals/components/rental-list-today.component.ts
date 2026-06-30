@@ -43,6 +43,7 @@ import { Rental } from '../../../models/rental.model';
     .rental-table th, .rental-table td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
   `],
 })
+
 export class RentalListTodayComponent implements OnInit {
   rentals: Rental[] = [];
 
@@ -50,7 +51,19 @@ export class RentalListTodayComponent implements OnInit {
 
   ngOnInit(): void {
     this.rentalService.getRentalsForToday().subscribe({
-      next: (rentals) => (this.rentals = rentals),
+      next: (rentals) => {
+        const today = new Date();
+
+        this.rentals = rentals.filter(rental => {
+          const pickup = new Date(rental.pickupDate);
+
+          return (
+            pickup.getFullYear() === today.getFullYear() &&
+            pickup.getMonth() === today.getMonth() &&
+            pickup.getDate() === today.getDate()
+          );
+        });
+      },
       error: (err) => console.error(err),
     });
   }
