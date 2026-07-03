@@ -45,12 +45,17 @@ import { Rental } from '../../../models/rental.model';
 })
 export class RentalListComponent implements OnInit {
   rentals: Rental[] = [];
+  rentalsPickupToday: Rental[] = [];
 
   constructor(private rentalService: RentalService) {}
 
   ngOnInit(): void {
     this.rentalService.getRentals().subscribe({
-      next: (rentals) => (this.rentals = rentals),
+      next: (rentals) => {
+        this.rentals = rentals
+        // var today = Date.now();
+        // this.rentalsPickupToday = rentals.filter(rental => rental.pickupDate == today)
+      },
       error: (err) => console.error(err),
     });
   }
