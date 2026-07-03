@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RentalService } from '../../../core/services/rental.service';
 import { Rental } from '../../../models/rental.model';
@@ -29,8 +29,7 @@ import { Rental } from '../../../models/rental.model';
             <td>{{ rental.days }}</td>
             <td>{{ rental.totalCost | currency }}</td>
           </tr>
-        }
-        @empty {
+        } @empty {
           <tr>
             <td>No rentals to show.</td>
           </tr>
@@ -38,20 +37,21 @@ import { Rental } from '../../../models/rental.model';
       </tbody>
     </table>
   `,
-  styles: [`
-    .rental-table { width: 100%; border-collapse: collapse; }
-    .rental-table th, .rental-table td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
-  `],
+  styles: [
+    `
+      .rental-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .rental-table th,
+      .rental-table td {
+        border-bottom: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+    `,
+  ],
 })
-export class RentalListComponent implements OnInit {
-  rentals: Rental[] = [];
-
-  constructor(private rentalService: RentalService) {}
-
-  ngOnInit(): void {
-    this.rentalService.getRentals().subscribe({
-      next: (rentals) => (this.rentals = rentals),
-      error: (err) => console.error(err),
-    });
-  }
+export class RentalListComponent {
+  @Input() rentals: Rental[] = [];
 }
