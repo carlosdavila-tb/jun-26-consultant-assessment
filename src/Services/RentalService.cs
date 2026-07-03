@@ -46,13 +46,15 @@ public class RentalService : IRentalService
             ReturnDate = request.ReturnDate,
             Days = days,
             DailyRate = request.DailyRate,
-            TotalCost = totalCost
+            TotalCost = totalCost,
+            DepotPreparationNote = request.DepotPreparationNote
         };
 
         _rentals.Add(rental);
 
         string summary = $"EMAIL -> {rental.CustomerName}: Your {rental.VehicleClass} is booked for "
-            + $"{rental.Days} day(s) from {rental.PickupDate} to {rental.ReturnDate}. Total due: {rental.TotalCost:C}.";
+            + $"{rental.Days} day(s) from {rental.PickupDate} to {rental.ReturnDate}. Total due: {rental.TotalCost:C}."
+            + $"Preparation note: {rental.DepotPreparationNote}";
         _confirmations.Add(summary);
 
         return rental;
