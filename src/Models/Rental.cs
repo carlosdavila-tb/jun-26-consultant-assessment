@@ -20,3 +20,14 @@ public class CreateRentalRequest
     public DateOnly ReturnDate { get; set; }
     public decimal DailyRate { get; set; }
 }
+
+public class CreateVehiclePreparation
+{
+    public string CustomerName {get; set;}
+    public string VehicleClass {get; set;}
+    public DateOnly PickupDate {get; set;}
+    public string PreparationNote {get; set;}
+    public string ConfirmationMessage {get; set;}
+    public Boolean BookingValidation {get; set;}
+    public decimal Rate {get; set;}
+}

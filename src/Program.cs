@@ -47,7 +47,7 @@ static void SeedData(IServiceProvider services)
         ReturnDate = DateOnly.FromDateTime(DateTime.Today.AddDays(5)),
         DailyRate = 78.50m
     });
-
+    
     rentalService.BookRental(new RentalDesk.Models.CreateRentalRequest
     {
         CustomerName = "Priya Anand",
