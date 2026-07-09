@@ -10,7 +10,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins("http://127.0.0.1:4200")
               .AllowAnyHeader()
               .AllowAnyMethod());
 });
@@ -55,5 +55,15 @@ static void SeedData(IServiceProvider services)
         PickupDate = DateOnly.FromDateTime(DateTime.Today),
         ReturnDate = DateOnly.FromDateTime(DateTime.Today.AddDays(2)),
         DailyRate = 95.00m
+    });
+
+    rentalService.BookRental(new RentalDesk.Models.CreateRentalRequestWithPreparationMessage
+    {
+        CustomerName = "Anthony Almachi",
+        VehicleClass = "SUV",
+        PickupDate = DateOnly.FromDateTime(DateTime.Today),
+        ReturnDate = DateOnly.FromDateTime(DateTime.Today.AddDays(5)),
+        DailyRate = 56.00m,
+        PreparationMessage = "Please add a can of soda for this customer"
     });
 }
