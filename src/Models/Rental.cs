@@ -20,3 +20,8 @@ public class CreateRentalRequest
     public DateOnly ReturnDate { get; set; }
     public decimal DailyRate { get; set; }
 }
+
+public class CreateRentalRequestWithPreparationMessage : CreateRentalRequest
+{
+    public string? PreparationMessage {get; set;} = string.Empty;
+}
