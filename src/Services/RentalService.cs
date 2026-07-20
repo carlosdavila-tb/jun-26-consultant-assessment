@@ -6,11 +6,16 @@ public class RentalService : IRentalService
 {
     private readonly List<Rental> _rentals = new();
     private readonly List<string> _confirmations = new();
+    private readonly List<string> _preparationNotes = new();
+
     private int _nextId = 1;
 
     public IReadOnlyList<Rental> GetRentals() => _rentals;
 
     public IReadOnlyList<string> GetConfirmations() => _confirmations;
+
+    public IReadOnlyList<string> GetPreparationNotes() =>  _preparationNotes;
+
 
     public Rental BookRental(CreateRentalRequest request)
     {
@@ -54,6 +59,11 @@ public class RentalService : IRentalService
         string summary = $"EMAIL -> {rental.CustomerName}: Your {rental.VehicleClass} is booked for "
             + $"{rental.Days} day(s) from {rental.PickupDate} to {rental.ReturnDate}. Total due: {rental.TotalCost:C}.";
         _confirmations.Add(summary);
+
+
+        string preparation = $"PREPARATION -> Id: {rental.Id} "
+            + $"Pickup Date: {rental.PickupDate}";
+        _preparationNotes.Add(preparation);
 
         return rental;
     }
