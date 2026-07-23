@@ -10,6 +10,7 @@ public class Rental
     public required int Days { get; init; }
     public required decimal DailyRate { get; init; }
     public required decimal TotalCost { get; init; }
+    public required string DepotPreparationNote { get; init; }
 }
 
 public class CreateRentalRequest
@@ -19,4 +20,5 @@ public class CreateRentalRequest
     public DateOnly PickupDate { get; set; }
     public DateOnly ReturnDate { get; set; }
     public decimal DailyRate { get; set; }
+    public string DepotPreparationNote { get; set; } = string.Empty;
 }
