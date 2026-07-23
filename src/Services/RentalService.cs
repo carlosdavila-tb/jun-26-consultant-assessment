@@ -10,6 +10,12 @@ public class RentalService : IRentalService
 
     public IReadOnlyList<Rental> GetRentals() => _rentals;
 
+    public IReadOnlyList<Rental> GetTodayRentals() =>
+    _rentals
+        .Where(r => r.PickupDate == DateOnly.FromDateTime(DateTime.Today))
+        .ToList();
+
+
     public IReadOnlyList<string> GetConfirmations() => _confirmations;
 
     public Rental BookRental(CreateRentalRequest request)

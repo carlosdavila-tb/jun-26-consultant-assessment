@@ -14,7 +14,7 @@ public required DateOnly ReturnDate { get; init; }
 ```
 
 - [ ] A) It models a calendar date with no time-of-day, so a booking date never carries a spurious hour/minute component
-- [ ] B) It makes date comparisons run measurably faster than `DateTime` at runtime
+- [x] B) It makes date comparisons run measurably faster than `DateTime` at runtime
 - [ ] C) It automatically converts the date to the server's local time zone on read
 - [ ] D) It is required because ASP.NET cannot serialize `DateTime` to JSON
 
@@ -237,7 +237,7 @@ _Explain why you chose your answer..._
 
 **The project separates `Controllers/`, `Services/`, and `Models/`. A new rule for computing a loyalty discount on the total belongs in which place?**
 
-- [ ] A) The service, where business logic lives
+- [x] A) The service, where business logic lives
 - [ ] B) The controller action, next to the HTTP handling
 - [ ] C) The `Rental` model's property getter
 - [ ] D) `Program.cs`, alongside the startup wiring
@@ -249,7 +249,7 @@ _Explain why you chose your answer..._
 **`RentalsController` depends on `IRentalService`, not the concrete `RentalService`. What does depending on the interface allow?**
 
 - [ ] A) It lets the controller call the data store directly
-- [ ] B) The implementation behind the interface can be swapped or substituted (for example, with a test stand-in) without changing the controller
+- [x] B) The implementation behind the interface can be swapped or substituted (for example, with a test stand-in) without changing the controller
 - [ ] C) It removes the need to register the service at startup
 - [ ] D) It makes the controller run before the service is built
 
@@ -261,7 +261,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) The two types must always expose identical fields
 - [ ] B) `CreateRentalRequest` exists only because a controller cannot accept a class
-- [ ] C) The shape clients send is decoupled from the stored entity, so one can change without forcing the other
+- [x] C) The shape clients send is decoupled from the stored entity, so one can change without forcing the other
 - [ ] D) Splitting them makes the in-memory lookup faster
 
 ---
@@ -273,7 +273,7 @@ _Explain why you chose your answer..._
 - [ ] A) The model validates the request, then calls the controller
 - [ ] B) The controller writes to the data store directly and skips the service
 - [ ] C) `Program.cs` handles the request and returns the response
-- [ ] D) The controller receives the request, delegates to the service (which holds the booking logic), and returns the service's result as the response
+- [x] D) The controller receives the request, delegates to the service (which holds the booking logic), and returns the service's result as the response
 
 ---
 
@@ -305,7 +305,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Nothing — swapping the framework always rewrites the domain logic
 - [ ] B) The database schema is migrated automatically
-- [ ] C) The business rules and entity don't change, because they don't depend on the transport layer
+- [x] C) The business rules and entity don't change, because they don't depend on the transport layer
 - [ ] D) The JSON wire format is guaranteed to stay identical
 
 ---
@@ -326,7 +326,7 @@ _Explain why you chose your answer..._
 **Riverbend wants bookings to survive an application restart (they are in-memory today). Which persistence approach would you choose, and why?**
 
 - [ ] A) Put the store behind a data-access interface backed by a managed relational database — durable and queryable, at the cost of an external dependency and its connection/operational concerns
-- [ ] B) Keep an in-process store but periodically write a snapshot to a local file that the app reloads on start — fewer moving parts, but weaker concurrency and query support
+- [x] B) Keep an in-process store but periodically write a snapshot to a local file that the app reloads on start — fewer moving parts, but weaker concurrency and query support
 - [ ] C) Leave it in memory and ask staff to re-enter bookings after a restart
 - [ ] D) Write every booking to a plain log line printed to the console
 
@@ -344,7 +344,7 @@ _Explain why you chose your answer..._
 **`RentalsController` is annotated `[ApiController]`, `[Route("rentals")]`, with `[HttpGet]`, `[HttpGet("confirmations")]`, and `[HttpPost]`. What do these attributes do?**
 
 - [ ] A) They register the service in the DI container
-- [ ] B) They map HTTP verbs and paths to action methods, so `GET /rentals` reaches `GetRentals` and `GET /rentals/confirmations` reaches `GetConfirmations`
+- [x] B) They map HTTP verbs and paths to action methods, so `GET /rentals` reaches `GetRentals` and `GET /rentals/confirmations` reaches `GetConfirmations`
 - [ ] C) They validate the request body before the action runs
 - [ ] D) They cache the responses for all GET endpoints
 
@@ -356,7 +356,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) It reads the value from the URL query string
 - [ ] B) It validates that the rate is positive
-- [ ] C) It binds (deserializes) the JSON request body into the `CreateRentalRequest` object
+- [x] C) It binds (deserializes) the JSON request body into the `CreateRentalRequest` object
 - [ ] D) It sets the HTTP response status code
 
 ---
@@ -370,7 +370,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 ```
 
 - [ ] A) A new `RentalService` is created for every HTTP request
-- [ ] B) A new `RentalService` is created at every injection point
+- [x] B) A new `RentalService` is created at every injection point
 - [ ] C) The service is created only when first booked and discarded after each request
 - [ ] D) One instance lives for the application's lifetime and is shared across all requests, which is why the in-memory rentals persist between calls
 
@@ -380,7 +380,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 
 **When `BookRental` throws `ArgumentException` for invalid input, the controller catches it and returns `BadRequest`. A teammate suggests letting it bubble up as a 500 instead. Which best handles a predictable invalid-input case?**
 
-- [ ] A) Translate the invalid input to a 400 (BadRequest) at the controller so clients get a clear client-error response
+- [x] A) Translate the invalid input to a 400 (BadRequest) at the controller so clients get a clear client-error response
 - [ ] B) Let it become a 500 so the client knows something went wrong
 - [ ] C) Swallow the exception and return 200 with an empty body
 - [ ] D) Retry the booking automatically until it succeeds
@@ -392,7 +392,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 **The service methods are synchronous, which is fine for an in-memory list. Which statement is true about introducing `async`/`await` once a real database is added?**
 
 - [ ] A) `async` speeds up pure in-memory work as well, so it should be added now
-- [ ] B) `async`/`await` frees the request thread during I/O waits, improving throughput under load; for pure in-memory work it adds no benefit
+- [x] B) `async`/`await` frees the request thread during I/O waits, improving throughput under load; for pure in-memory work it adds no benefit
 - [ ] C) `async` is required for any method that returns a value
 - [ ] D) `async` changes the HTTP status codes the action returns
 
@@ -404,7 +404,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 
 - [ ] A) Instantiate the database client with `new` inside `BookRental`
 - [ ] B) Move all booking logic into `Program.cs`
-- [ ] C) Register a persistent implementation behind `IRentalService` (or its storage interface) via DI, swapping the in-memory one without changing the controller
+- [x] C) Register a persistent implementation behind `IRentalService` (or its storage interface) via DI, swapping the in-memory one without changing the controller
 - [ ] D) Have the controller open its own database connection per request
 
 ---
@@ -438,7 +438,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) It reduces randomness in the output, producing more consistent, repeatable wording
 - [ ] B) It increases the size of the context window
-- [ ] C) It makes the model respond faster
+- [x] C) It makes the model respond faster
 - [ ] D) It guarantees the output is factually correct
 
 ---
@@ -448,7 +448,7 @@ _Explain why you chose your answer..._
 **The assistant is given a long list of current rentals plus the conversation so far. What does the model's context window limit?**
 
 - [ ] A) The number of customers the branch can have
-- [ ] B) The total tokens (prompt plus response) the model can consider at once, so oversized inputs must be trimmed or summarized
+- [x] B) The total tokens (prompt plus response) the model can consider at once, so oversized inputs must be trimmed or summarized
 - [ ] C) How many times per day the assistant can be called
 - [ ] D) The maximum value the temperature setting can take
 
@@ -458,7 +458,7 @@ _Explain why you chose your answer..._
 
 **The assistant's system prompt says: "You are Riverbend's front-desk assistant. Answer only questions about vehicle rentals; decline anything else." What does this role instruction primarily shape?**
 
-- [ ] A) The data the model was trained on
+- [x] A) The data the model was trained on
 - [ ] B) The hardware the model runs on
 - [ ] C) The tone, scope, and format of the assistant's responses
 - [ ] D) The network latency of each call
@@ -472,7 +472,7 @@ _Explain why you chose your answer..._
 - [ ] A) Lowering the temperature to zero
 - [ ] B) Few-shot labeling
 - [ ] C) Shrinking the context window
-- [ ] D) Chain-of-thought prompting — guiding step-by-step reasoning to improve accuracy on multi-step tasks
+- [x] D) Chain-of-thought prompting — guiding step-by-step reasoning to improve accuracy on multi-step tasks
 
 ---
 
@@ -480,7 +480,7 @@ _Explain why you chose your answer..._
 
 **The assistant sometimes states a daily rate that isn't in Riverbend's data. Which approach best reduces this?**
 
-- [ ] A) Provide the actual rate data as grounded context and instruct the assistant to answer only from it, not from memory
+- [x] A) Provide the actual rate data as grounded context and instruct the assistant to answer only from it, not from memory
 - [ ] B) Raise the temperature so the answers sound more confident
 - [ ] C) Add more unrelated examples to the prompt
 - [ ] D) Ask the same question repeatedly until the answers agree
@@ -492,7 +492,7 @@ _Explain why you chose your answer..._
 **The assistant keeps the entire conversation and the full rentals list in context on every turn. Which statement about this unbounded context growth is true?**
 
 - [ ] A) It has no downside because larger context is always better
-- [ ] B) Tokens and cost grow, and irrelevant content can crowd out what matters, so the context needs deliberate pruning or summarizing
+- [x] B) Tokens and cost grow, and irrelevant content can crowd out what matters, so the context needs deliberate pruning or summarizing
 - [ ] C) It permanently increases the model's maximum context window
 - [ ] D) It guarantees the assistant never repeats itself
 
@@ -505,7 +505,7 @@ _Explain why you chose your answer..._
 - [ ] A) Keep only the latest prompt text in a code comment
 - [ ] B) Avoid changing the prompt once it works
 - [ ] C) Keep prompts under version control so changes are tracked and earlier versions can be restored
-- [ ] D) Raise the temperature to mask the regression
+- [x] D) Raise the temperature to mask the regression
 
 ---
 
@@ -515,7 +515,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Let the model send the confirmations directly with temperature set high for variety
 - [ ] B) Skip any review and fix issues only when customers complain
-- [ ] C) Route every draft through a human reviewer before it is sent — maximizes brand and accuracy control, at the cost of speed and staff time
+- [x] C) Route every draft through a human reviewer before it is sent — maximizes brand and accuracy control, at the cost of speed and staff time
 - [ ] D) Send automatically with guardrails plus sampled post-hoc review — maximizes speed and scale while accepting a monitored level of risk
 
 <details open>
@@ -583,7 +583,7 @@ _Explain why you chose your answer..._
 
 **`RentalListComponent` loads its data in `ngOnInit` rather than in the constructor. What does `ngOnInit` give that the constructor does not?**
 
-- [ ] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
+- [x] A) It runs after the component's bindings are initialized, which is the appropriate point to do initialization work like loading data
 - [ ] B) It runs before the class is constructed
 - [ ] C) It guarantees the HTTP call is synchronous
 - [ ] D) It prevents the component from ever re-rendering
@@ -595,7 +595,7 @@ _Explain why you chose your answer..._
 **The components are standalone and list `imports: [CommonModule]`. What does the `imports` array do for a standalone component?**
 
 - [ ] A) It registers the component as a global singleton
-- [ ] B) It makes the listed directives and pipes available to the component's template without an NgModule
+- [x] B) It makes the listed directives and pipes available to the component's template without an NgModule
 - [ ] C) It imports the backend API definitions
 - [ ] D) It lazy-loads the component on first render
 
@@ -607,7 +607,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Manually slice the ISO string in the component with substring math
 - [ ] B) Store a second pre-formatted date field on the backend
-- [ ] C) Use the framework's date pipe in the template to format the value for presentation
+- [x] C) Use the framework's date pipe in the template to format the value for presentation
 - [ ] D) Convert the date to a number and show that
 
 ---
@@ -616,7 +616,7 @@ _Explain why you chose your answer..._
 
 **Suppose the rentals observable from `RentalService` were bound in the template with the async pipe. What does the async pipe manage?**
 
-- [ ] A) It converts the observable into a Promise
+- [x] A) It converts the observable into a Promise
 - [ ] B) It caches the data on the server
 - [ ] C) It increases the polling frequency of the request
 - [ ] D) It subscribes and unsubscribes automatically and renders emitted values, avoiding a manual subscription leak
@@ -627,7 +627,7 @@ _Explain why you chose your answer..._
 
 **The service is typed `getRentals(): Observable<Rental[]>` using the `Rental` interface. The API will soon add a field. Which approach best preserves type safety across the components that use it?**
 
-- [ ] A) Add the new field to the `Rental` interface so the compiler tracks its use everywhere, rather than switching to `any`
+- [x] A) Add the new field to the `Rental` interface so the compiler tracks its use everywhere, rather than switching to `any`
 - [ ] B) Type the response as `any` so no changes are needed
 - [ ] C) Cast the response to `unknown` and read fields by string
 - [ ] D) Duplicate the `Rental` interface inside each component
@@ -639,7 +639,7 @@ _Explain why you chose your answer..._
 **The per-row total needs to be shown as currency. How would you produce the formatted value, and why?**
 
 - [ ] A) Hard-code a "$" in front of the raw number directly in the template
-- [ ] B) Format the amount with the framework's currency pipe in the template — declarative and locale-aware, but the formatting lives in the view
+- [x] B) Format the amount with the framework's currency pipe in the template — declarative and locale-aware, but the formatting lives in the view
 - [ ] C) Precompute a formatted total string in the component (for example, a `formattedTotal` field) — easier to unit-test and control, but the component now owns a presentation detail
 - [ ] D) Store the formatted string on the server and never format on the client
 
@@ -690,7 +690,7 @@ _Explain why you chose your answer..._
 **Which structure best describes a unit test for `BookRental`'s calculation?**
 
 - [ ] A) Assert first, then arrange, then act
-- [ ] B) Arrange (build a `CreateRentalRequest`), act (call `BookRental`), assert (check the returned rental's days and total)
+- [x] B) Arrange (build a `CreateRentalRequest`), act (call `BookRental`), assert (check the returned rental's days and total)
 - [ ] C) Call the endpoint over HTTP, then read the database, then print the result
 - [ ] D) One line that constructs, calls, and asserts together for brevity
 
@@ -702,7 +702,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) That `BookRental` calls its internal list exactly once
 - [ ] B) That the method runs in under a millisecond
-- [ ] C) The observable behavior — the output produced for given inputs, regardless of how it is computed
+- [x] C) The observable behavior — the output produced for given inputs, regardless of how it is computed
 - [ ] D) That the controller returns a 201 status
 
 ---
@@ -714,7 +714,7 @@ _Explain why you chose your answer..._
 - [ ] A) The tests are deleted and rewritten from scratch
 - [ ] B) New behavior is added in the same step
 - [ ] C) The production code is left unchanged
-- [ ] D) Behavior stays the same and the existing tests still pass while the code's structure is improved
+- [x] D) Behavior stays the same and the existing tests still pass while the code's structure is improved
 
 ---
 
@@ -722,7 +722,7 @@ _Explain why you chose your answer..._
 
 **Which set of cases best covers `BookRental`'s input validation?**
 
-- [ ] A) Empty customer name, empty vehicle class, return date not after pickup, non-positive rate, plus one fully valid booking — covering the empty, exception, boundary, and simple cases
+- [x] A) Empty customer name, empty vehicle class, return date not after pickup, non-positive rate, plus one fully valid booking — covering the empty, exception, boundary, and simple cases
 - [ ] B) Only one valid booking with typical values
 - [ ] C) Many random valid bookings and nothing else
 - [ ] D) Only the case where the rate is exactly zero
@@ -734,7 +734,7 @@ _Explain why you chose your answer..._
 **Every test rebuilds the same `CreateRentalRequest` before calling `BookRental`. What does extracting a shared builder or helper for it achieve?**
 
 - [ ] A) It makes the tests depend on each other's order
-- [ ] B) It removes the duplication, so a change to the request shape updates one place and each test stays focused on its scenario
+- [x] B) It removes the duplication, so a change to the request shape updates one place and each test stays focused on its scenario
 - [ ] C) It turns the tests into integration tests
 - [ ] D) It guarantees 100% code coverage
 
@@ -746,7 +746,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Copy the same test method once per combination
 - [ ] B) Assert only the first combination and assume the rest
-- [ ] C) Use a parameterized test (`[Theory]` with `[InlineData]` rows) feeding each combination into one test
+- [x] C) Use a parameterized test (`[Theory]` with `[InlineData]` rows) feeding each combination into one test
 - [ ] D) Test the combinations only through the live HTTP endpoint
 
 ---
@@ -758,7 +758,7 @@ _Explain why you chose your answer..._
 - [ ] A) Test only by manually clicking through the page before each release
 - [ ] B) Write no tests below the UI, since the end-to-end tests cover everything
 - [ ] C) Invest mainly in end-to-end tests that drive the page against the live API — highest whole-stack confidence, at the cost of slow, brittle, hard-to-pinpoint feedback
-- [ ] D) Invest mainly in fast unit/integration tests below the UI with a few end-to-end checks — fast, precise feedback, at the cost of possibly missing some integration gaps
+- [x] D) Invest mainly in fast unit/integration tests below the UI with a few end-to-end checks — fast, precise feedback, at the cost of possibly missing some integration gaps
 
 <details open>
 <summary>💬 Your reasoning</summary>

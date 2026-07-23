@@ -7,4 +7,5 @@ public interface IRentalService
     IReadOnlyList<Rental> GetRentals();
     IReadOnlyList<string> GetConfirmations();
     Rental BookRental(CreateRentalRequest request);
+    IReadOnlyList<Rental> GetTodayRentals();
 }
