@@ -13,7 +13,7 @@ public required DateOnly PickupDate { get; init; }
 public required DateOnly ReturnDate { get; init; }
 ```
 
-- [ ] A) It models a calendar date with no time-of-day, so a booking date never carries a spurious hour/minute component
+- [X] A) It models a calendar date with no time-of-day, so a booking date never carries a spurious hour/minute component
 - [ ] B) It makes date comparisons run measurably faster than `DateTime` at runtime
 - [ ] C) It automatically converts the date to the server's local time zone on read
 - [ ] D) It is required because ASP.NET cannot serialize `DateTime` to JSON
@@ -30,7 +30,7 @@ public required decimal TotalCost { get; init; }
 ```
 
 - [ ] A) The properties can be reassigned at any time after the object is created
-- [ ] B) The properties can be set only while the object is being constructed, so a stored rental's fields can't be altered afterward
+- [X] B) The properties can be set only while the object is being constructed, so a stored rental's fields can't be altered afterward
 - [ ] C) The properties are ignored during JSON serialization
 - [ ] D) The properties must all be value types
 
@@ -66,7 +66,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 - [ ] A) It makes the method run on a background thread
 - [ ] B) It guarantees the method never throws
 - [ ] C) It removes the need to test the invalid cases
-- [ ] D) It rejects bad input up front, so the successful path reads top-to-bottom without deep nesting
+- [X] D) It rejects bad input up front, so the successful path reads top-to-bottom without deep nesting
 
 ---
 
@@ -74,7 +74,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 
 **The service's private fields are named `_rentals` and `_confirmations`. Which statement about this naming is true in this codebase?**
 
-- [ ] A) The leading underscore + camelCase marks them as private fields, matching the convention used across the project
+- [X] A) The leading underscore + camelCase marks them as private fields, matching the convention used across the project
 - [ ] B) The leading underscore makes the fields publicly accessible
 - [ ] C) The underscore is required for the garbage collector to track them
 - [ ] D) The names should be PascalCase like `Rentals` to follow the convention
@@ -86,7 +86,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 **Validation uses `string.IsNullOrWhiteSpace(request.CustomerName)` rather than `request.CustomerName == null`. What does this guard against that a plain null check would not?**
 
 - [ ] A) Nothing — the two checks are equivalent
-- [ ] B) It also rejects empty or whitespace-only names, not just a missing (null) value
+- [X] B) It also rejects empty or whitespace-only names, not just a missing (null) value
 - [ ] C) It converts the name to upper case before storing
 - [ ] D) It prevents the name from ever being null at compile time
 
@@ -98,7 +98,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 
 - [ ] A) `Handle` is better because shorter names compile faster
 - [ ] B) Both are equally clear since the class name already mentions "Rental"
-- [ ] C) `BookRental` states the action the method performs, so a caller understands it without opening the body
+- [X] C) `BookRental` states the action the method performs, so a caller understands it without opening the body
 - [ ] D) Method names should be nouns, so `Rental` would be the best choice
 
 ---
@@ -113,7 +113,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 ```
 
 - [ ] A) Leave it as-is — seed code never needs to be clean
-- [ ] B) Add a comment above each block explaining the fields
+- [X] B) Add a comment above each block explaining the fields
 - [ ] C) Copy the block a fourth time so all the seeds look symmetric
 - [ ] D) Extract a small helper that builds a request from the varying values and call it for each seed
 
@@ -123,7 +123,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 
 **The total currently appears only inside the pre-formatted confirmation text (`{rental.TotalCost:C}`). The branch now serves multiple currencies and wants the raw amount available to other parts of the system. Which approach best supports that?**
 
-- [ ] A) Keep the numeric total available as data on the rental and format it for presentation at the edge, rather than only embedding it in a formatted message
+- [X] A) Keep the numeric total available as data on the rental and format it for presentation at the edge, rather than only embedding it in a formatted message
 - [ ] B) Store the total only as the formatted string and re-parse the number when it is needed
 - [ ] C) Round the total to two decimals before storing so the string is always correct
 - [ ] D) Remove the total from the confirmation entirely so there is one less place to maintain
@@ -135,7 +135,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 **`GetRentals` returns `IReadOnlyList<Rental>` rather than `List<Rental>`. What does the read-only return type communicate to a caller?**
 
 - [ ] A) The returned collection is a fresh copy on every call
-- [ ] B) The caller is meant to read the collection, not mutate it; the service owns the underlying list
+- [X] B) The caller is meant to read the collection, not mutate it; the service owns the underlying list
 - [ ] C) The collection can hold at most a fixed number of items
 - [ ] D) The caller must release the collection back to the service after use
 
@@ -147,7 +147,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 
 - [ ] A) The properties are validated against a database on save
 - [ ] B) The properties accept null values by default
-- [ ] C) An instance can't be constructed without those properties set, so a `Rental` missing its customer or dates can't exist
+- [X] C) An instance can't be constructed without those properties set, so a `Rental` missing its customer or dates can't exist
 - [ ] D) The properties become read-only constants shared by all instances
 
 ---
@@ -162,7 +162,7 @@ decimal totalCost = days * request.DailyRate;
 ```
 
 - [ ] A) It must be moved into the controller to be testable
-- [ ] B) It can only be verified through an end-to-end test
+- [X] B) It can only be verified through an end-to-end test
 - [ ] C) Its result changes depending on how many times it is called
 - [ ] D) Because it depends only on its inputs, the same inputs always produce the same result, making it easy to test in isolation
 
@@ -172,7 +172,7 @@ decimal totalCost = days * request.DailyRate;
 
 **`BookRental` signals invalid input by throwing `ArgumentException` with a message. Compared with returning `null` or a bare `false`, what does throwing a specific exception communicate?**
 
-- [ ] A) The failure and its reason are explicit and can't be silently ignored by the caller
+- [X] A) The failure and its reason are explicit and can't be silently ignored by the caller
 - [ ] B) The method will automatically retry the booking
 - [ ] C) The caller no longer needs to handle the error
 - [ ] D) The exception makes the method run asynchronously
@@ -190,7 +190,7 @@ string summary = $"EMAIL -> {rental.CustomerName}: ... {rental.Days} day(s) ... 
 ```
 
 - [ ] A) Build the message from the original request values instead of the rental
-- [ ] B) Build the message from the `rental` object's own fields, so the message and the record always reflect the same data
+- [X] B) Build the message from the `rental` object's own fields, so the message and the record always reflect the same data
 - [ ] C) Store the message and the rental in the same list to keep them together
 - [ ] D) Add a comment reminding future editors to keep them in sync
 
@@ -210,7 +210,7 @@ if (request.DailyRate <= 0) throw new ArgumentException("Daily rate must be grea
 
 - [ ] A) Remove the validation checks and let invalid data fail later when it is used
 - [ ] B) Log a warning and continue booking with the invalid values
-- [ ] C) Keep throwing for invalid input — the success path stays clean and the failure can't be silently ignored
+- [X] C) Keep throwing for invalid input — the success path stays clean and the failure can't be silently ignored
 - [ ] D) Return a result/outcome object the caller must inspect — an expected invalid booking becomes a normal return value rather than control flow via an exception
 
 <details open>
@@ -227,7 +227,7 @@ _Explain why you chose your answer..._
 **`Rental` references no ASP.NET or Swagger types — it is plain data. What does keeping the model free of framework types buy?**
 
 - [ ] A) It makes JSON serialization impossible
-- [ ] B) It forces every controller to share one model
+- [X] B) It forces every controller to share one model
 - [ ] C) It prevents the model from being held in a list
 - [ ] D) The domain entity stays independent of the web layer, so it can be used and tested without involving HTTP
 
@@ -238,7 +238,7 @@ _Explain why you chose your answer..._
 **The project separates `Controllers/`, `Services/`, and `Models/`. A new rule for computing a loyalty discount on the total belongs in which place?**
 
 - [ ] A) The service, where business logic lives
-- [ ] B) The controller action, next to the HTTP handling
+- [X] B) The controller action, next to the HTTP handling
 - [ ] C) The `Rental` model's property getter
 - [ ] D) `Program.cs`, alongside the startup wiring
 
@@ -249,7 +249,7 @@ _Explain why you chose your answer..._
 **`RentalsController` depends on `IRentalService`, not the concrete `RentalService`. What does depending on the interface allow?**
 
 - [ ] A) It lets the controller call the data store directly
-- [ ] B) The implementation behind the interface can be swapped or substituted (for example, with a test stand-in) without changing the controller
+- [X] B) The implementation behind the interface can be swapped or substituted (for example, with a test stand-in) without changing the controller
 - [ ] C) It removes the need to register the service at startup
 - [ ] D) It makes the controller run before the service is built
 

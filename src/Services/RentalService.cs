@@ -57,4 +57,32 @@ public class RentalService : IRentalService
 
         return rental;
     }
+    public CreateVehiclePreparation VehiclePreparation(CreateVehiclePreparation request)
+    {
+        if (string.IsNullOrWhiteSpace(request.CustomerName))
+        {
+            throw new ArgumentException("Customer name is required.");
+        }
+
+        if (string.IsNullOrWhiteSpace(request.VehicleClass))
+        {
+            throw new ArgumentException("Vehicle class is required.");
+        }
+        if (request.Rate <= 0)
+        {
+            throw new ArgumentException("Daily rate must be greater than zero.");
+        }
+        if (!request.BookingValidation)
+        {
+            throw new ArgumentException("Booking not validated");
+        }
+        string PreparationNote = "";
+        string ConfirmationMessage = "";
+        var vehiclePreparation = new CreateVehiclePreparation
+        {
+            
+        };
+
+        return vehiclePreparation;
+    }
 }
