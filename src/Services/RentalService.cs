@@ -1,4 +1,5 @@
-using RentalDesk.Models;
+using RentalDesk.Models.Entities;
+using RentalDesk.Models.Dto;
 
 namespace RentalDesk.Services;
 

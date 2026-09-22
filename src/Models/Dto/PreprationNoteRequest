@@ -1,0 +1,7 @@
+namespace RentalDesk.Models.Dto;
+
+public class PreparationNoteRequest
+{
+    public string Note { get; set; } = string.Empty;
+    public int RentalId {get;set;}
+}

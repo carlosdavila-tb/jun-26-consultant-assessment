@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RentalListComponent } from '../components/rental-list.component';
+import { RentalListComponent } from '../components/RentalListComponent';
 
 @Component({
   selector: 'app-rentals-page',
