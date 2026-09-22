@@ -5,7 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<IDepotNoteService, DepotNoteService>();
 builder.Services.AddSingleton<IRentalService, RentalService>();
+
 
 builder.Services.AddCors(options =>
 {
