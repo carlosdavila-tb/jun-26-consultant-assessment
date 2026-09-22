@@ -1,0 +1,64 @@
+<table class="rental-table">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Vehicle</th>
+          <th>Pickup</th>
+          <th>Return</th>
+          <th>Days</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (rental of rentals; track rental.id) {
+          <tr>
+            <td>{{ rental.customerName }}</td>
+            <td>{{ rental.vehicleClass }}</td>
+            <td>{{ rental.pickupDate }}</td>
+            <td>{{ rental.returnDate }}</td>
+            <td>{{ rental.days }}</td>
+            <td>{{ rental.totalCost | currency }}</td>
+          </tr>
+        }
+        @empty {
+          <tr>
+            <td>No rentals to show.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+
+    <h2>Today's Pickups</h2>
+
+<table class="rental-table">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Vehicle</th>
+      <th>Pickup</th>
+      <th>Return</th>
+      <th>Days</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (rental of todayPickups; track rental.id) {
+      <tr>
+        <td>{{ rental.customerName }}</td>
+        <td>{{ rental.vehicleClass }}</td>
+        <td>{{ rental.pickupDate }}</td>
+        <td>{{ rental.returnDate }}</td>
+        <td>{{ rental.days }}</td>
+        <td>{{ rental.totalCost | currency }}</td>
+      </tr>
+    }
+
+    @empty {
+      <tr>
+        <td colspan="6">No pickups today.</td>
+      </tr>
+    }
+  </tbody>
+</table>

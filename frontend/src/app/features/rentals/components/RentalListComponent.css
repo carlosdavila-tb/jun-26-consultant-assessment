@@ -1,0 +1,3 @@
+.rental-table { width: 100%; border-collapse: collapse; }
+.rental-table th, .rental-table td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
+  

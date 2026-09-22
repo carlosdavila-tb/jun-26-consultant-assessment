@@ -13,7 +13,7 @@ public required DateOnly PickupDate { get; init; }
 public required DateOnly ReturnDate { get; init; }
 ```
 
-- [ ] A) It models a calendar date with no time-of-day, so a booking date never carries a spurious hour/minute component
+- [X] A) It models a calendar date with no time-of-day, so a booking date never carries a spurious hour/minute component
 - [ ] B) It makes date comparisons run measurably faster than `DateTime` at runtime
 - [ ] C) It automatically converts the date to the server's local time zone on read
 - [ ] D) It is required because ASP.NET cannot serialize `DateTime` to JSON
@@ -30,7 +30,7 @@ public required decimal TotalCost { get; init; }
 ```
 
 - [ ] A) The properties can be reassigned at any time after the object is created
-- [ ] B) The properties can be set only while the object is being constructed, so a stored rental's fields can't be altered afterward
+- [X] B) The properties can be set only while the object is being constructed, so a stored rental's fields can't be altered afterward
 - [ ] C) The properties are ignored during JSON serialization
 - [ ] D) The properties must all be value types
 
@@ -46,7 +46,7 @@ string summary = $"EMAIL -> {rental.CustomerName}: Your {rental.VehicleClass} is
 
 - [ ] A) Interpolation changes the value of `rental.CustomerName`
 - [ ] B) Interpolation only works inside controller actions
-- [ ] C) The `$"..."` form embeds the values inline, which reads more clearly than joining fragments with `+`
+- [X] C) The `$"..."` form embeds the values inline, which reads more clearly than joining fragments with `+`
 - [ ] D) Interpolation rounds any numeric value to two decimals automatically
 
 ---
@@ -66,7 +66,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 - [ ] A) It makes the method run on a background thread
 - [ ] B) It guarantees the method never throws
 - [ ] C) It removes the need to test the invalid cases
-- [ ] D) It rejects bad input up front, so the successful path reads top-to-bottom without deep nesting
+- [X] D) It rejects bad input up front, so the successful path reads top-to-bottom without deep nesting
 
 ---
 
@@ -74,7 +74,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 
 **The service's private fields are named `_rentals` and `_confirmations`. Which statement about this naming is true in this codebase?**
 
-- [ ] A) The leading underscore + camelCase marks them as private fields, matching the convention used across the project
+- [X] A) The leading underscore + camelCase marks them as private fields, matching the convention used across the project
 - [ ] B) The leading underscore makes the fields publicly accessible
 - [ ] C) The underscore is required for the garbage collector to track them
 - [ ] D) The names should be PascalCase like `Rentals` to follow the convention
@@ -86,7 +86,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 **Validation uses `string.IsNullOrWhiteSpace(request.CustomerName)` rather than `request.CustomerName == null`. What does this guard against that a plain null check would not?**
 
 - [ ] A) Nothing — the two checks are equivalent
-- [ ] B) It also rejects empty or whitespace-only names, not just a missing (null) value
+- [X] B) It also rejects empty or whitespace-only names, not just a missing (null) value
 - [ ] C) It converts the name to upper case before storing
 - [ ] D) It prevents the name from ever being null at compile time
 
@@ -98,7 +98,7 @@ if (string.IsNullOrWhiteSpace(request.CustomerName))
 
 - [ ] A) `Handle` is better because shorter names compile faster
 - [ ] B) Both are equally clear since the class name already mentions "Rental"
-- [ ] C) `BookRental` states the action the method performs, so a caller understands it without opening the body
+- [X] C) `BookRental` states the action the method performs, so a caller understands it without opening the body
 - [ ] D) Method names should be nouns, so `Rental` would be the best choice
 
 ---
@@ -115,7 +115,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 - [ ] A) Leave it as-is — seed code never needs to be clean
 - [ ] B) Add a comment above each block explaining the fields
 - [ ] C) Copy the block a fourth time so all the seeds look symmetric
-- [ ] D) Extract a small helper that builds a request from the varying values and call it for each seed
+- [X] D) Extract a small helper that builds a request from the varying values and call it for each seed
 
 ---
 
@@ -123,7 +123,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 
 **The total currently appears only inside the pre-formatted confirmation text (`{rental.TotalCost:C}`). The branch now serves multiple currencies and wants the raw amount available to other parts of the system. Which approach best supports that?**
 
-- [ ] A) Keep the numeric total available as data on the rental and format it for presentation at the edge, rather than only embedding it in a formatted message
+- [X] A) Keep the numeric total available as data on the rental and format it for presentation at the edge, rather than only embedding it in a formatted message
 - [ ] B) Store the total only as the formatted string and re-parse the number when it is needed
 - [ ] C) Round the total to two decimals before storing so the string is always correct
 - [ ] D) Remove the total from the confirmation entirely so there is one less place to maintain
@@ -135,7 +135,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 **`GetRentals` returns `IReadOnlyList<Rental>` rather than `List<Rental>`. What does the read-only return type communicate to a caller?**
 
 - [ ] A) The returned collection is a fresh copy on every call
-- [ ] B) The caller is meant to read the collection, not mutate it; the service owns the underlying list
+- [X] B) The caller is meant to read the collection, not mutate it; the service owns the underlying list
 - [ ] C) The collection can hold at most a fixed number of items
 - [ ] D) The caller must release the collection back to the service after use
 
@@ -147,7 +147,7 @@ rentalService.BookRental(new CreateRentalRequest { CustomerName = "Marcus...", V
 
 - [ ] A) The properties are validated against a database on save
 - [ ] B) The properties accept null values by default
-- [ ] C) An instance can't be constructed without those properties set, so a `Rental` missing its customer or dates can't exist
+- [X] C) An instance can't be constructed without those properties set, so a `Rental` missing its customer or dates can't exist
 - [ ] D) The properties become read-only constants shared by all instances
 
 ---
@@ -164,7 +164,7 @@ decimal totalCost = days * request.DailyRate;
 - [ ] A) It must be moved into the controller to be testable
 - [ ] B) It can only be verified through an end-to-end test
 - [ ] C) Its result changes depending on how many times it is called
-- [ ] D) Because it depends only on its inputs, the same inputs always produce the same result, making it easy to test in isolation
+- [X] D) Because it depends only on its inputs, the same inputs always produce the same result, making it easy to test in isolation
 
 ---
 
@@ -172,7 +172,7 @@ decimal totalCost = days * request.DailyRate;
 
 **`BookRental` signals invalid input by throwing `ArgumentException` with a message. Compared with returning `null` or a bare `false`, what does throwing a specific exception communicate?**
 
-- [ ] A) The failure and its reason are explicit and can't be silently ignored by the caller
+- [X] A) The failure and its reason are explicit and can't be silently ignored by the caller
 - [ ] B) The method will automatically retry the booking
 - [ ] C) The caller no longer needs to handle the error
 - [ ] D) The exception makes the method run asynchronously
@@ -190,7 +190,7 @@ string summary = $"EMAIL -> {rental.CustomerName}: ... {rental.Days} day(s) ... 
 ```
 
 - [ ] A) Build the message from the original request values instead of the rental
-- [ ] B) Build the message from the `rental` object's own fields, so the message and the record always reflect the same data
+- [X] B) Build the message from the `rental` object's own fields, so the message and the record always reflect the same data
 - [ ] C) Store the message and the rental in the same list to keep them together
 - [ ] D) Add a comment reminding future editors to keep them in sync
 
@@ -211,12 +211,12 @@ if (request.DailyRate <= 0) throw new ArgumentException("Daily rate must be grea
 - [ ] A) Remove the validation checks and let invalid data fail later when it is used
 - [ ] B) Log a warning and continue booking with the invalid values
 - [ ] C) Keep throwing for invalid input — the success path stays clean and the failure can't be silently ignored
-- [ ] D) Return a result/outcome object the caller must inspect — an expected invalid booking becomes a normal return value rather than control flow via an exception
+- [X] D) Return a result/outcome object the caller must inspect — an expected invalid booking becomes a normal return value rather than control flow via an exception
 
 <details open>
 <summary>💬 Your reasoning</summary>
 
-_Explain why you chose your answer..._
+_The best response in this case is manage cleare outcome because an exception can give an 500 response if controller can not catching, on an other hand, outcome let us to manage the responde and http status response_
 
 </details>
 
@@ -229,7 +229,7 @@ _Explain why you chose your answer..._
 - [ ] A) It makes JSON serialization impossible
 - [ ] B) It forces every controller to share one model
 - [ ] C) It prevents the model from being held in a list
-- [ ] D) The domain entity stays independent of the web layer, so it can be used and tested without involving HTTP
+- [x] D) The domain entity stays independent of the web layer, so it can be used and tested without involving HTTP
 
 ---
 
@@ -237,7 +237,7 @@ _Explain why you chose your answer..._
 
 **The project separates `Controllers/`, `Services/`, and `Models/`. A new rule for computing a loyalty discount on the total belongs in which place?**
 
-- [ ] A) The service, where business logic lives
+- [x] A) The service, where business logic lives
 - [ ] B) The controller action, next to the HTTP handling
 - [ ] C) The `Rental` model's property getter
 - [ ] D) `Program.cs`, alongside the startup wiring
@@ -249,7 +249,7 @@ _Explain why you chose your answer..._
 **`RentalsController` depends on `IRentalService`, not the concrete `RentalService`. What does depending on the interface allow?**
 
 - [ ] A) It lets the controller call the data store directly
-- [ ] B) The implementation behind the interface can be swapped or substituted (for example, with a test stand-in) without changing the controller
+- [x] B) The implementation behind the interface can be swapped or substituted (for example, with a test stand-in) without changing the controller
 - [ ] C) It removes the need to register the service at startup
 - [ ] D) It makes the controller run before the service is built
 
@@ -261,7 +261,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) The two types must always expose identical fields
 - [ ] B) `CreateRentalRequest` exists only because a controller cannot accept a class
-- [ ] C) The shape clients send is decoupled from the stored entity, so one can change without forcing the other
+- [x] C) The shape clients send is decoupled from the stored entity, so one can change without forcing the other
 - [ ] D) Splitting them makes the in-memory lookup faster
 
 ---
@@ -273,7 +273,7 @@ _Explain why you chose your answer..._
 - [ ] A) The model validates the request, then calls the controller
 - [ ] B) The controller writes to the data store directly and skips the service
 - [ ] C) `Program.cs` handles the request and returns the response
-- [ ] D) The controller receives the request, delegates to the service (which holds the booking logic), and returns the service's result as the response
+- [X] D) The controller receives the request, delegates to the service (which holds the booking logic), and returns the service's result as the response
 
 ---
 
@@ -281,7 +281,7 @@ _Explain why you chose your answer..._
 
 **`GetRentals` returns the entire list every time. As Riverbend's history grows into the thousands of rentals, which change best fits the layered design?**
 
-- [ ] A) Return a bounded page of rentals from the service/endpoint (for example, a page index plus size), instead of always loading everything
+- [X] A) Return a bounded page of rentals from the service/endpoint (for example, a page index plus size), instead of always loading everything
 - [ ] B) Move the full list into the controller so it loads faster
 - [ ] C) Cache the full list inside the `Rental` model
 - [ ] D) Return the rentals as one concatenated string to shrink the response
@@ -293,7 +293,7 @@ _Explain why you chose your answer..._
 **Suppose Riverbend opens a second branch and the two share one bookings store across regions. During a network partition between regions, what does the CAP theorem say the system must trade off?**
 
 - [ ] A) It can keep full consistency, availability, and partition tolerance all at once
-- [ ] B) Under a partition it must choose between staying consistent (rejecting some requests) and staying available (risking divergent data)
+- [X] B) Under a partition it must choose between staying consistent (rejecting some requests) and staying available (risking divergent data)
 - [ ] C) Partitions only affect read performance, never correctness
 - [ ] D) Adding more regions removes the trade-off entirely
 
@@ -305,7 +305,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) Nothing — swapping the framework always rewrites the domain logic
 - [ ] B) The database schema is migrated automatically
-- [ ] C) The business rules and entity don't change, because they don't depend on the transport layer
+- [X] C) The business rules and entity don't change, because they don't depend on the transport layer
 - [ ] D) The JSON wire format is guaranteed to stay identical
 
 ---
@@ -317,7 +317,7 @@ _Explain why you chose your answer..._
 - [ ] A) Inline the database calls directly inside `BookRental`
 - [ ] B) Move the booking logic into the controller so the service can be deleted
 - [ ] C) Have the controller talk to the database and bypass the service
-- [ ] D) Have the service depend on a storage interface, with the in-memory and database versions as interchangeable implementations
+- [X] D) Have the service depend on a storage interface, with the in-memory and database versions as interchangeable implementations
 
 ---
 
@@ -325,7 +325,7 @@ _Explain why you chose your answer..._
 
 **Riverbend wants bookings to survive an application restart (they are in-memory today). Which persistence approach would you choose, and why?**
 
-- [ ] A) Put the store behind a data-access interface backed by a managed relational database — durable and queryable, at the cost of an external dependency and its connection/operational concerns
+- [A] A) Put the store behind a data-access interface backed by a managed relational database — durable and queryable, at the cost of an external dependency and its connection/operational concerns
 - [ ] B) Keep an in-process store but periodically write a snapshot to a local file that the app reloads on start — fewer moving parts, but weaker concurrency and query support
 - [ ] C) Leave it in memory and ask staff to re-enter bookings after a restart
 - [ ] D) Write every booking to a plain log line printed to the console
@@ -333,7 +333,7 @@ _Explain why you chose your answer..._
 <details open>
 <summary>💬 Your reasoning</summary>
 
-_Explain why you chose your answer..._
+_Database is better to persistance this data, let to configure backups, have indexes to high queries, let to have replication to another location_
 
 </details>
 
@@ -344,7 +344,7 @@ _Explain why you chose your answer..._
 **`RentalsController` is annotated `[ApiController]`, `[Route("rentals")]`, with `[HttpGet]`, `[HttpGet("confirmations")]`, and `[HttpPost]`. What do these attributes do?**
 
 - [ ] A) They register the service in the DI container
-- [ ] B) They map HTTP verbs and paths to action methods, so `GET /rentals` reaches `GetRentals` and `GET /rentals/confirmations` reaches `GetConfirmations`
+- [x] B) They map HTTP verbs and paths to action methods, so `GET /rentals` reaches `GetRentals` and `GET /rentals/confirmations` reaches `GetConfirmations`
 - [ ] C) They validate the request body before the action runs
 - [ ] D) They cache the responses for all GET endpoints
 
@@ -356,7 +356,7 @@ _Explain why you chose your answer..._
 
 - [ ] A) It reads the value from the URL query string
 - [ ] B) It validates that the rate is positive
-- [ ] C) It binds (deserializes) the JSON request body into the `CreateRentalRequest` object
+- [x] C) It binds (deserializes) the JSON request body into the `CreateRentalRequest` object
 - [ ] D) It sets the HTTP response status code
 
 ---
@@ -372,7 +372,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 - [ ] A) A new `RentalService` is created for every HTTP request
 - [ ] B) A new `RentalService` is created at every injection point
 - [ ] C) The service is created only when first booked and discarded after each request
-- [ ] D) One instance lives for the application's lifetime and is shared across all requests, which is why the in-memory rentals persist between calls
+- [x] D) One instance lives for the application's lifetime and is shared across all requests, which is why the in-memory rentals persist between calls
 
 ---
 
@@ -380,7 +380,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 
 **When `BookRental` throws `ArgumentException` for invalid input, the controller catches it and returns `BadRequest`. A teammate suggests letting it bubble up as a 500 instead. Which best handles a predictable invalid-input case?**
 
-- [ ] A) Translate the invalid input to a 400 (BadRequest) at the controller so clients get a clear client-error response
+- [x] A) Translate the invalid input to a 400 (BadRequest) at the controller so clients get a clear client-error response
 - [ ] B) Let it become a 500 so the client knows something went wrong
 - [ ] C) Swallow the exception and return 200 with an empty body
 - [ ] D) Retry the booking automatically until it succeeds
@@ -392,7 +392,7 @@ builder.Services.AddSingleton<IRentalService, RentalService>();
 **The service methods are synchronous, which is fine for an in-memory list. Which statement is true about introducing `async`/`await` once a real database is added?**
 
 - [ ] A) `async` speeds up pure in-memory work as well, so it should be added now
-- [ ] B) `async`/`await` frees the request thread during I/O waits, improving throughput under load; for pure in-memory work it adds no benefit
+- [x] B) `async`/`await` frees the request thread during I/O waits, improving throughput under load; for pure in-memory work it adds no benefit
 - [ ] C) `async` is required for any method that returns a value
 - [ ] D) `async` changes the HTTP status codes the action returns
 
