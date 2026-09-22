@@ -40,4 +40,11 @@ public class RentalsController : ControllerBase
             return BadRequest(new { error = ex.Message });
         }
     }
+    
+    [HttpGet("depot-notes")]
+    public ActionResult<IReadOnlyList<DepotNote>> GetDepotNotes()
+    {
+        return Ok(_rentalService.GetDepotNotes());
+    }
+
 }
