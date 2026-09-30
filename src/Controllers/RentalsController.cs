@@ -27,6 +27,12 @@ public class RentalsController : ControllerBase
         return Ok(_rentalService.GetConfirmations());
     }
 
+    [HttpGet("notes")]
+    public ActionResult<IReadOnlyList<string>> GetNotes()
+    {
+        return Ok(_rentalService.GetNotes());
+    }
+
     [HttpPost]
     public ActionResult<Rental> BookRental([FromBody] CreateRentalRequest request)
     {
