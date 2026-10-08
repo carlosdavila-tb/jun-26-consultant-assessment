@@ -6,6 +6,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRentalService, RentalService>();
+builder.Services.AddSingleton<DepotPreparationNotes>();
+builder.Services.AddSingleton<IBookingListener>(sp => sp.GetRequiredService<DepotPreparationNotes>());
+builder.Services.AddSingleton<IDepotPreparationNotes>(sp => sp.GetRequiredService<DepotPreparationNotes>());
 
 builder.Services.AddCors(options =>
 {
