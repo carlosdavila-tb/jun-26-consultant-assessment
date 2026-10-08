@@ -11,7 +11,12 @@ public class RentalService : IRentalService
     public IReadOnlyList<Rental> GetRentals() => _rentals;
 
     public IReadOnlyList<string> GetConfirmations() => _confirmations;
+    private readonly IEnumerable<IBookingListener> _bookingListeners;  
 
+    public RentalService(IEnumerable<IBookingListener> bookingListeners)
+    {
+        _bookingListeners = bookingListeners;
+    }
     public Rental BookRental(CreateRentalRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.CustomerName))
@@ -54,6 +59,10 @@ public class RentalService : IRentalService
         string summary = $"EMAIL -> {rental.CustomerName}: Your {rental.VehicleClass} is booked for "
             + $"{rental.Days} day(s) from {rental.PickupDate} to {rental.ReturnDate}. Total due: {rental.TotalCost:C}.";
         _confirmations.Add(summary);
+        foreach (var bookingListener in _bookingListeners)
+        {
+            bookingListener.OnBooked(rental);
+        }
 
         return rental;
     }
