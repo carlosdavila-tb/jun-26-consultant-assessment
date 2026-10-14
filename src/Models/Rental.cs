@@ -10,6 +10,7 @@ public class Rental
     public required int Days { get; init; }
     public required decimal DailyRate { get; init; }
     public required decimal TotalCost { get; init; }
+    public required string Note { get; init; }
 }
 
 public class CreateRentalRequest

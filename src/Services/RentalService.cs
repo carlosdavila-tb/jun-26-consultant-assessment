@@ -46,7 +46,8 @@ public class RentalService : IRentalService
             ReturnDate = request.ReturnDate,
             Days = days,
             DailyRate = request.DailyRate,
-            TotalCost = totalCost
+            TotalCost = totalCost,
+            Note = "Prepare vehicle for pickup."
         };
 
         _rentals.Add(rental);
